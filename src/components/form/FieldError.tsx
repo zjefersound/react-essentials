@@ -1,7 +1,13 @@
 import { IValidationError } from "../../models/IValidationReturn";
 
 interface Props {
+  /**
+   * Field id
+   */
   id: string;
+  /**
+   * List of errors
+   */
   errors: IValidationError[];
 }
 export function FieldError({ id, errors }: Props) {

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Label } from "./Label";
 
 const meta = {
-  title: "UI/Label",
+  title: "Form/Label",
   component: Label,
   parameters: {
     layout: "centered",
