@@ -1,47 +1,68 @@
-import './button.css';
+import clsx from "clsx";
+import { ReactNode } from "react";
 
-export interface ButtonProps {
-  /**
-   * Is this the principal call to action on the page?
-   */
-  primary?: boolean;
+interface Props {
   /**
    * What background color to use
    */
-  backgroundColor?: string;
+  type?: "primary" | "brand" | "danger" | "success" | "secondary" | "tertiary";
   /**
-   * How large should the button be?
+   * Html button type
    */
-  size?: 'small' | 'medium' | 'large';
+  behavior?: "button" | "submit" | "reset";
   /**
    * Button contents
    */
-  label: string;
+  children: ReactNode;
   /**
    * Optional click handler
    */
-  onClick?: () => void;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  /**
+   * Optional classes (TW won't appear on storybook)
+   */
+  className?: string;
+  /**
+   * Optional disabled behavior
+   */
+  disabled?: boolean;
 }
-
 /**
  * Primary UI component for user interaction
  */
-export const Button = ({
-  primary = false,
-  size = 'medium',
-  backgroundColor,
-  label,
+export function Button({
+  type = "primary",
+  children,
+  onClick,
+  className,
+  behavior,
   ...props
-}: ButtonProps) => {
-  const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
+}: Props) {
   return (
     <button
-      type="button"
-      className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
-      style={{ backgroundColor }}
+      className={clsx(
+        "rounded-md flex items-center py-2.5 px-3.5 text-sm leading-5 font-semibold transition disabled:opacity-75 disabled:pointer-events-none space-x-2.5",
+        className,
+        {
+          "bg-amber-500 hover:bg-amber-600 active:bg-amber-700 text-white":
+            type === "brand",
+          "bg-neutral-900 hover:bg-neutral-800 active:bg-neutral-700 text-white":
+            type === "primary",
+          "bg-slate-500 hover:bg-slate-600 active:bg-slate-700 text-white":
+            type === "secondary",
+          "bg-slate-200 hover:bg-slate-300 active:bg-slate-400 text-neutral-900":
+            type === "tertiary",
+          "bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white":
+            type === "success",
+          "bg-red-600 hover:bg-red-700 active:bg-red-800 text-white":
+            type === "danger",
+        }
+      )}
+      type={behavior}
+      onClick={onClick}
       {...props}
     >
-      {label}
+      {children}
     </button>
   );
-};
+}
