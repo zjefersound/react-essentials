@@ -8,7 +8,13 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  argTypes: {},
+  argTypes: {
+    children: {
+      table: {
+        disable: true,
+      },
+    },
+  },
   args: {
     id: "username",
     errors: [{ field: "username", message: "Username must contain at least 3 characters"}],
