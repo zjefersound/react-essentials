@@ -1,5 +1,9 @@
 import { MdPersonOutline } from "react-icons/md";
-import { TextInput, TextInputRootProps } from "./TextInput";
+import {
+  TextInput,
+  TextInputInputProps,
+  TextInputRootProps,
+} from "./TextInput";
 import { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
@@ -27,12 +31,16 @@ const meta = {
 } as Meta<TextInputRootProps>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
-
+type Story = StoryObj<TextInputInputProps>;
 
 export const Default: Story = {};
 export const WithoutIcon: Story = {
   args: {
     children: <TextInput.Input placeholder="Type your e-mail address" />,
+  },
+};
+export const Currency: Story = {
+  args: {
+    children: <TextInput.CurrencyInput onChange={() => {}} />,
   },
 };

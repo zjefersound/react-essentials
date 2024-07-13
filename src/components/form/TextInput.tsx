@@ -49,16 +49,16 @@ function TextInputInput(props: TextInputInputProps) {
 TextInputInput.displayName = "TextInput.Input";
 
 interface TextInputCurrencyProps {
-  defaultValue: number;
+  defaultValue?: number;
   onChange: (value: number) => void;
   currency?: string;
   locale?: string;
 }
 function TextInputCurrency({
-  defaultValue,
   onChange,
-  locale,
-  currency,
+  defaultValue = 0,
+  locale = "pt-BR",
+  currency = "BRL",
 }: TextInputCurrencyProps) {
   const [displayValue, setDisplayValue] = useState(
     defaultValue?.toFixed(2).replace(/\D/g, "") || ""
