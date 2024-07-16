@@ -1,11 +1,17 @@
 import clsx from "clsx";
 import { ReactNode } from "react";
 
-interface Props {
+interface ButtonProps {
   /**
    * What background color to use
    */
-  type?: "primary" | "brand" | "danger" | "success" | "secondary" | "tertiary";
+  variant?:
+    | "primary"
+    | "brand"
+    | "danger"
+    | "success"
+    | "secondary"
+    | "tertiary";
   /**
    * Html button type
    */
@@ -31,13 +37,13 @@ interface Props {
  * Primary UI component for user interaction
  */
 export function Button({
-  type = "primary",
+  variant = "primary",
   children,
   onClick,
   className,
   behavior,
   ...props
-}: Props) {
+}: ButtonProps) {
   return (
     <button
       className={clsx(
@@ -45,17 +51,17 @@ export function Button({
         className,
         {
           "bg-amber-500 hover:bg-amber-600 active:bg-amber-700 text-white":
-            type === "brand",
+            variant === "brand",
           "bg-neutral-900 hover:bg-neutral-800 active:bg-neutral-700 text-white":
-            type === "primary",
+            variant === "primary",
           "bg-slate-500 hover:bg-slate-600 active:bg-slate-700 text-white":
-            type === "secondary",
+            variant === "secondary",
           "bg-slate-200 hover:bg-slate-300 active:bg-slate-400 text-neutral-900":
-            type === "tertiary",
+            variant === "tertiary",
           "bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white":
-            type === "success",
+            variant === "success",
           "bg-red-600 hover:bg-red-700 active:bg-red-800 text-white":
-            type === "danger",
+            variant === "danger",
         }
       )}
       type={behavior}

@@ -21,6 +21,13 @@ const meta = {
     ],
   },
   argTypes: {
+    variant: {
+      options: ["danger", "success"],
+      type: "string",
+      control: {
+        type: "select",
+      },
+    },
     children: {
       table: {
         disable: true,
@@ -35,12 +42,12 @@ type Story = StoryObj<TextInputRootProps>;
 export const Default: Story = {};
 export const WithError: Story = {
   args: {
-    type: "danger"
+    variant: "danger"
   }
 };
 export const WithSuccess: Story = {
   args: {
-    type: "success"
+    variant: "success"
   }
 };
 export const WithoutIcon: Story = {

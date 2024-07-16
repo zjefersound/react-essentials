@@ -25,14 +25,14 @@ export const Primary: Story = {
 export const Secondary: Story = {
   args: {
     children: "Button",
-    type: 'secondary'
+    variant: 'secondary'
   },
 };
 
 export const Tertiary: Story = {
   args: {
     children: "Button",
-    type: 'tertiary'
+    variant: 'tertiary'
   },
 };
 
@@ -40,21 +40,21 @@ export const Brand: Story = {
   name: "Brand color",
   args: {
     children: "Button",
-    type: 'brand'
+    variant: 'brand'
   },
 };
 
 export const Danger: Story = {
   args: {
     children: "Button",
-    type: 'danger'
+    variant: 'danger'
   },
 }
 
 export const Success: Story = {
   args: {
     children: "Button",
-    type: 'success'
+    variant: 'success'
   },
 };
 
