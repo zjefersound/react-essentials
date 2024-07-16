@@ -3,7 +3,7 @@ import { IValidationError } from "../../models/IValidationReturn";
 import { FieldError } from "./FieldError";
 import { Label } from "./Label";
 
-interface Props {
+export interface FormControlProps {
   /**
    * Field id
    */
@@ -25,7 +25,7 @@ interface Props {
    */
   errors: IValidationError[];
 }
-export function FormControl({ id, label, optional, errors, children }: Props) {
+export function FormControl({ id, label, optional, errors, children }: FormControlProps) {
   return (
     <div>
       <Label id={id}>

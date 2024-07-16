@@ -1,18 +1,21 @@
 import { InputHTMLAttributes, ReactNode, useState } from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { toCurrency } from "../../utils/toCurrency";
+import clsx from "clsx";
 
 export interface TextInputInputProps
   extends InputHTMLAttributes<HTMLInputElement> {}
 
 export interface TextInputRootProps {
   children: ReactNode;
+  type?: "danger" | "success";
 }
 
-function TextInputRoot({ children }: TextInputRootProps) {
+function TextInputRoot({ children, type }: TextInputRootProps) {
   return (
     <div
-      className={`
+      className={clsx(
+        `
         h-10
         flex items-center space-x-2
         py-4 px-3 rounded-md
@@ -21,7 +24,13 @@ function TextInputRoot({ children }: TextInputRootProps) {
         bg-white
         w-full 
         focus-within:ring-2 ring-slate-500
-      `}
+      `,
+        {
+          "border-slate-300": !type,
+          "border-red-600": type === "danger",
+          "border-emerald-600": type === "success",
+        }
+      )}
     >
       {children}
     </div>
