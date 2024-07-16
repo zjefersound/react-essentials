@@ -4,13 +4,7 @@ import { TextInput } from "./TextInput";
 
 const meta = {
   title: "Form/FormControl",
-  component: (props) => (
-    <FormControl {...props}>
-      <TextInput.Root type={props.errors.find(error => error.field === props.id) ? "danger" : undefined}>
-        <TextInput.Input value="my_username" />
-      </TextInput.Root>
-    </FormControl>
-  ),
+  component: FormControl,
   parameters: {
     layout: "centered",
   },
@@ -25,6 +19,11 @@ const meta = {
   args: {
     id: "username",
     errors: [],
+    children: [
+      <TextInput.Root>
+        <TextInput.Input value="my_username" />
+      </TextInput.Root>,
+    ],
     label: "Username",
   },
 } satisfies Meta<FormControlProps>;
@@ -42,6 +41,11 @@ export const WithError: Story = {
         field: "username",
         message: "Username must contain at least 3 characters",
       },
+    ],
+    children: [
+      <TextInput.Root type="danger">
+        <TextInput.Input value="my_username" />
+      </TextInput.Root>,
     ],
   },
 };

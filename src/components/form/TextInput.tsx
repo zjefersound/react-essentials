@@ -18,9 +18,8 @@ function TextInputRoot({ children, type }: TextInputRootProps) {
         `
         h-10
         flex items-center space-x-2
-        py-4 px-3 rounded-md
+        py-2 px-3 rounded-md
         border
-        border-slate-300
         bg-white
         w-full 
         focus-within:ring-2 ring-slate-500
