@@ -42,7 +42,7 @@ export interface TextInputIconProps {
 }
 
 function TextInputIcon({ children }: TextInputIconProps) {
-  return <Slot className="w-6 h-6 text-slate-500">{children}</Slot>;
+  return <Slot className="w-5 h-5 text-slate-500">{children}</Slot>;
 }
 TextInputIcon.displayName = "TextInput.Icon";
 

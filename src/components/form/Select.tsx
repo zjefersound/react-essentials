@@ -29,7 +29,7 @@ const SelectRoot = ({
     <SelectPrimitive.Trigger
       className="h-10
       flex items-center space-x-2
-      py-4 px-3 rounded-md
+      py-2 px-3 rounded-md
       border 
       border-slate-300
       bg-white

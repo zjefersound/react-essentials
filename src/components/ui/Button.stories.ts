@@ -36,14 +36,6 @@ export const Tertiary: Story = {
   },
 };
 
-export const Brand: Story = {
-  name: "Brand color",
-  args: {
-    children: "Button",
-    variant: 'brand'
-  },
-};
-
 export const Danger: Story = {
   args: {
     children: "Button",
