@@ -58,7 +58,7 @@ export function CurrencyInput({
 
   return (
     <input
-      className="outline-0 bg-transparent flex-1 text-zinc-900 text-sm placeholder:text-slate-500"
+      className="outline-0 bg-transparent flex-1 text-slate-900 text-sm placeholder:text-slate-500"
       inputMode="numeric"
       type="text"
       onChange={(e) => {

@@ -37,7 +37,7 @@ const SelectRoot = ({
       outline-0
       focus-within:ring-2 ring-slate-500  
       text-sm
-      leading-none text-zinc-900 hover:bg-white  focus:shadow-zinc-900 data-[placeholder]:text-slate-500 outline-none"
+      leading-none text-slate-900 hover:bg-white  focus:shadow-slate-900 data-[placeholder]:text-slate-500 outline-none"
     >
       <SelectPrimitive.Value placeholder={placeholder} />
       <SelectPrimitive.Icon className="text-slate-500">
@@ -71,7 +71,7 @@ const SelectItem = React.forwardRef(
     return (
       <SelectPrimitive.Item
         className={clsx(
-          "text-[13px] cursor-pointer leading-none text-slate-500 rounded-md flex items-center h-10 pr-9 pl-6 relative select-none data-[disabled]:text-slate-300 data-[disabled]:pointer-events-none data-[highlighted]:outline-none data-[highlighted]:bg-slate-100 data-[highlighted]:text-zinc-900",
+          "text-[13px] cursor-pointer leading-none text-slate-500 rounded-md flex items-center h-10 pr-9 pl-6 relative select-none data-[disabled]:text-slate-300 data-[disabled]:pointer-events-none data-[highlighted]:outline-none data-[highlighted]:bg-slate-100 data-[highlighted]:text-slate-900",
           className
         )}
         {...props}

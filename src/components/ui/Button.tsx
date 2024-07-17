@@ -49,11 +49,11 @@ export function Button({
         "rounded-md flex items-center py-2.5 px-3.5 text-sm leading-5 font-semibold transition disabled:opacity-75 disabled:pointer-events-none space-x-2.5",
         className,
         {
-          "bg-zinc-900 hover:bg-zinc-800 active:bg-slate-700 text-white":
+          "bg-slate-900 hover:bg-slate-800 active:bg-slate-700 text-white":
             variant === "primary",
           "bg-slate-500 hover:bg-slate-600 active:bg-slate-700 text-white":
             variant === "secondary",
-          "bg-slate-200 hover:bg-slate-300 active:bg-slate-400 text-zinc-900":
+          "bg-slate-200 hover:bg-slate-300 active:bg-slate-400 text-slate-900":
             variant === "tertiary",
           "bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white":
             variant === "success",
