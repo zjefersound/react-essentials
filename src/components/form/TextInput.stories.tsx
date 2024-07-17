@@ -14,10 +14,10 @@ const meta = {
   tags: ["autodocs"],
   args: {
     children: [
-      <TextInput.Icon>
+      <TextInput.Icon key={1}>
         <MdPersonOutline />
       </TextInput.Icon>,
-      <TextInput.Input placeholder="Type your username" />,
+      <TextInput.Input key={2} placeholder="Type your username" />,
     ],
   },
   argTypes: {

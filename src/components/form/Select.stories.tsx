@@ -16,9 +16,9 @@ const meta = {
       console.log(value);
     },
     children: [
-      <Select.Item value="SC">Santa Catarina</Select.Item>,
-      <Select.Item value="SP">São Paulo</Select.Item>,
-      <Select.Item value="PR">Paraná</Select.Item>,
+      <Select.Item key={1} value="SC">Santa Catarina</Select.Item>,
+      <Select.Item key={2} value="SP">São Paulo</Select.Item>,
+      <Select.Item key={3} value="PR">Paraná</Select.Item>,
     ],
   },
   argTypes: {
@@ -55,7 +55,7 @@ export const Default: Story = {};
 export const Custom: Story = {
   args: {
     children: [
-      <Select.Item value="1">
+      <Select.Item key={1} value="1">
         <div className="flex items-center">
           <img
             alt="Photo"
@@ -65,7 +65,7 @@ export const Custom: Story = {
           Alex Smith
         </div>
       </Select.Item>,
-      <Select.Item value="2">
+      <Select.Item key={2} value="2">
         <div className="flex items-center">
           <img
             alt="Photo"
@@ -75,7 +75,7 @@ export const Custom: Story = {
           Taylor Brown
         </div>
       </Select.Item>,
-      <Select.Item value="3" disabled>
+      <Select.Item key={3} value="3" disabled>
         <div className="flex items-center">
           <img
             alt="Photo"

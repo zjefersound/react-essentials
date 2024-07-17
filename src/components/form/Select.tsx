@@ -2,6 +2,7 @@ import React, { LegacyRef, ReactNode } from "react";
 import * as SelectPrimitive from "@radix-ui/react-select";
 import clsx from "clsx";
 import { RxCheck, RxChevronDown, RxChevronUp } from "react-icons/rx";
+import { InputRoot } from "./atoms/InputRoot";
 
 export interface SelectRootProps {
   children: ReactNode;
@@ -26,23 +27,13 @@ const SelectRoot = ({
     onValueChange={(value) => onChange(value === null ? "" : value)}
     required={required}
   >
-    <SelectPrimitive.Trigger
-      className="h-10
-      flex items-center space-x-2
-      py-2 px-3 rounded-md
-      border 
-      border-slate-300
-      bg-white
-      w-full 
-      outline-0
-      focus-within:ring-2 ring-slate-500  
-      text-sm
-      leading-none text-slate-900 hover:bg-white  focus:shadow-slate-900 data-[placeholder]:text-slate-500 outline-none"
-    >
-      <SelectPrimitive.Value placeholder={placeholder} />
-      <SelectPrimitive.Icon className="text-slate-500">
-        <RxChevronDown />
-      </SelectPrimitive.Icon>
+    <SelectPrimitive.Trigger asChild>
+      <InputRoot className="h-10 w-full">
+        <SelectPrimitive.Value placeholder={placeholder} />
+        <SelectPrimitive.Icon className="text-slate-500">
+          <RxChevronDown />
+        </SelectPrimitive.Icon>
+      </InputRoot>
     </SelectPrimitive.Trigger>
     <SelectPrimitive.Portal>
       <SelectPrimitive.Content className="z-50 overflow-hidden bg-white border rounded shadow-[0px_10px_38px_-10px_rgba(0,_0,_0,_0.4),_0px_8px_16px_-15px_rgba(22,_23,_24,_0.2)]">

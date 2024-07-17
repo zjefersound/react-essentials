@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { FormControl, FormControlProps } from "./FormControl";
 import { TextInput } from "./TextInput";
+import { fn } from "@storybook/test";
 
 const meta = {
   title: "Form/FormControl",
@@ -20,8 +21,8 @@ const meta = {
     id: "username",
     errors: [],
     children: [
-      <TextInput.Root>
-        <TextInput.Input value="my_username" />
+      <TextInput.Root key={1}>
+        <TextInput.Input value="my_username" onChange={fn()}/>
       </TextInput.Root>,
     ],
     label: "Username",
@@ -43,8 +44,8 @@ export const WithError: Story = {
       },
     ],
     children: [
-      <TextInput.Root color="danger">
-        <TextInput.Input value="my_username" />
+      <TextInput.Root key={1} color="danger">
+        <TextInput.Input value="my_username" onChange={fn()} />
       </TextInput.Root>,
     ],
   },
