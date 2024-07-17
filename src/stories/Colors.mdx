@@ -1,79 +1,51 @@
-import { Meta } from "@storybook/blocks";
+import { Meta, ColorPalette, ColorItem } from "@storybook/blocks";
 
-<Meta title="Colors" />
+<Meta title="Colors" />;
 
-# Project colors
+# Colors
 
-This project uses tailwind colors by default, but there is semantic names for certain colors:
+This project uses the tailwind colors as its core, but you can customize it to your brand colors.
 
-## Colors:
+👉 Take a look at the [🔗 TailwindCSS colors documentation](https://tailwindcss.com/docs/customizing-colors)
 
-### Danger:
-
-<table>
-  <thead>
-    <tr>
-      <th>Color</th>
-      <th>Variant</th>
-      <th>className</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <div class="bg-red-600 h-8 w-8 rounded-md inline-block" />
-      </td>
-      <td>Default</td>
-      <td>`bg-red-600`</td>
-    </tr>
-    <tr>
-      <td>
-        <div class="bg-red-700 h-8 w-8 rounded-md inline-block" />
-      </td>
-      <td>Hover</td>
-      <td>`bg-red-700`</td>
-    </tr>
-    <tr>
-      <td>
-        <div class="bg-red-800 h-8 w-8 rounded-md inline-block" />
-      </td>
-      <td>Active</td>
-      <td>`bg-red-800`</td>
-    </tr>
-  </tbody>
-</table>
-
-### Success:
-
-<table>
-  <thead>
-    <tr>
-      <th>Color</th>
-      <th>Variant</th>
-      <th>className</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <div class="bg-emerald-600 h-8 w-8 rounded-md inline-block" />
-      </td>
-      <td>Default</td>
-      <td>`bg-emerald-600`</td>
-    </tr>
-    <tr>
-      <td>
-        <div class="bg-emerald-700 h-8 w-8 rounded-md inline-block" />
-      </td>
-      <td>Hover</td>
-      <td>`bg-emerald-700`</td>
-    </tr>
-    <tr>
-      <td>
-        <div class="bg-emerald-800 h-8 w-8 rounded-md inline-block" />
-      </td>
-      <td>Active</td>
-      <td>`bg-emerald-800`</td>
-    </tr>
-  </tbody>
-</table>
+<ColorPalette>
+  <ColorItem
+    title="Grayscale"
+    subtitle="Neutral colors"
+    colors={{
+      white: "#ffffff",
+      "slate-100": "#f1f5f9",
+      "slate-200": "#e2e8f0",
+      "slate-300": "#cbd5e1",
+      "slate-400": "#94a3b8",
+      "slate-500": "#64748b",
+      "slate-600": "#475569",
+      "slate-700": "#334155 ",
+      "zinc-800": "#27272a",
+      "zinc-900": "#18181b",
+    }}
+  />
+  <ColorItem
+    title="Success"
+    subtitle="Positive feedback colors"
+    colors={{
+      "emerald-600": "#059669",
+      "emerald-700": "#047857",
+      "emerald-800": "#065f46",
+    }}
+  />
+  <ColorItem
+    title="Danger"
+    subtitle="Negative feedback colors"
+    colors={{
+      "red-600": "#dc2626",
+      "red-700": "#b91c1c",
+      "red-800": "#991b1b",
+    }}
+  />
+  <ColorItem
+    title="Primary"
+    subtitle="Main color"
+    colors={{ "zinc-900": "#18181b" }}
+  />
+</ColorPalette>
