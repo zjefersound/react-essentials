@@ -8,10 +8,10 @@ export interface TextInputInputProps
 
 export interface TextInputRootProps {
   children: ReactNode;
-  variant?: "danger" | "success";
+  color?: "danger" | "success";
 }
 
-function TextInputRoot({ children, variant }: TextInputRootProps) {
+function TextInputRoot({ children, color }: TextInputRootProps) {
   return (
     <div
       className={clsx(
@@ -25,9 +25,9 @@ function TextInputRoot({ children, variant }: TextInputRootProps) {
         focus-within:ring-2 ring-slate-500
       `,
         {
-          "border-slate-300": !variant,
-          "border-red-600": variant === "danger",
-          "border-emerald-600": variant === "success",
+          "border-slate-300": !color,
+          "border-red-600": color === "danger",
+          "border-emerald-600": color === "success",
         }
       )}
     >

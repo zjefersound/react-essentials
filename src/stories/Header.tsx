@@ -55,7 +55,7 @@ export const Header = ({
         ) : (
           <>
             <Button onClick={onLogin}>Log in</Button>
-            <Button variant="secondary" onClick={onCreateAccount}>Sign up</Button>
+            <Button color="secondary" onClick={onCreateAccount}>Sign up</Button>
           </>
         )}
       </div>

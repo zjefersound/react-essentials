@@ -25,28 +25,28 @@ export const Primary: Story = {
 export const Secondary: Story = {
   args: {
     children: "Button",
-    variant: 'secondary'
+    color: 'secondary'
   },
 };
 
 export const Tertiary: Story = {
   args: {
     children: "Button",
-    variant: 'tertiary'
+    color: 'tertiary'
   },
 };
 
 export const Danger: Story = {
   args: {
     children: "Button",
-    variant: 'danger'
+    color: 'danger'
   },
 }
 
 export const Success: Story = {
   args: {
     children: "Button",
-    variant: 'success'
+    color: 'success'
   },
 };
 

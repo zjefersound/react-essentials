@@ -43,7 +43,7 @@ export const WithError: Story = {
       },
     ],
     children: [
-      <TextInput.Root variant="danger">
+      <TextInput.Root color="danger">
         <TextInput.Input value="my_username" />
       </TextInput.Root>,
     ],

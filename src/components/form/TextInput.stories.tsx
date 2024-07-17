@@ -21,7 +21,7 @@ const meta = {
     ],
   },
   argTypes: {
-    variant: {
+    color: {
       options: ["danger", "success"],
       type: "string",
       control: {
@@ -42,12 +42,12 @@ type Story = StoryObj<TextInputRootProps>;
 export const Default: Story = {};
 export const WithError: Story = {
   args: {
-    variant: "danger"
+    color: "danger"
   }
 };
 export const WithSuccess: Story = {
   args: {
-    variant: "success"
+    color: "success"
   }
 };
 export const WithoutIcon: Story = {

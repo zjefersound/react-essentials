@@ -1,16 +1,12 @@
 import clsx from "clsx";
 import { ReactNode } from "react";
+import { SemanticColor } from "../../models/semanticColor";
 
 interface ButtonProps {
   /**
    * What background color to use
    */
-  variant?:
-    | "primary"
-    | "danger"
-    | "success"
-    | "secondary"
-    | "tertiary";
+  color?: SemanticColor;
   /**
    * Html button type
    */
@@ -36,7 +32,7 @@ interface ButtonProps {
  * Primary UI component for user interaction
  */
 export function Button({
-  variant = "primary",
+  color = "primary",
   children,
   onClick,
   className,
@@ -50,15 +46,15 @@ export function Button({
         className,
         {
           "bg-slate-900 hover:bg-slate-800 active:bg-slate-700 text-white":
-            variant === "primary",
+            color === "primary",
           "bg-slate-500 hover:bg-slate-600 active:bg-slate-700 text-white":
-            variant === "secondary",
+            color === "secondary",
           "bg-slate-200 hover:bg-slate-300 active:bg-slate-400 text-slate-900":
-            variant === "tertiary",
+            color === "tertiary",
           "bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white":
-            variant === "success",
+            color === "success",
           "bg-red-600 hover:bg-red-700 active:bg-red-800 text-white":
-            variant === "danger",
+            color === "danger",
         }
       )}
       type={behavior}
