@@ -5,6 +5,8 @@ import {
 } from "./TextInput";
 import { Meta, StoryObj } from "@storybook/react";
 
+Object.assign(MdPersonOutline, { displayName: "MdPersonOutline" });
+
 const meta = {
   title: "Form/TextInput",
   component: TextInput.Root,

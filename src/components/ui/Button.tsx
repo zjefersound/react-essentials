@@ -42,7 +42,8 @@ export function Button({
   return (
     <button
       className={clsx(
-        "rounded-md flex items-center py-2.5 px-3.5 text-sm leading-5 font-semibold transition disabled:opacity-75 disabled:pointer-events-none space-x-2.5",
+        "rounded-md flex items-center py-2.5 px-3.5 text-sm leading-5 font-semibold transition space-x-2.5",
+        "disabled:opacity-75 disabled:pointer-events-none",
         className,
         {
           "bg-slate-900 hover:bg-slate-800 active:bg-slate-700 text-white":
