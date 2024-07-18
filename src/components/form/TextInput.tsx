@@ -9,6 +9,7 @@ export interface TextInputInputProps
 
 export interface TextInputRootProps extends InputRootProps {}
 
+// eslint-disable-next-line react-refresh/only-export-components
 function TextInputRoot({ children, color, className }: TextInputRootProps) {
   return (
     <InputRoot className={clsx("w-full", className)} color={color}>
@@ -22,11 +23,13 @@ export interface TextInputIconProps {
   children: ReactNode;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 function TextInputIcon({ children }: TextInputIconProps) {
   return <Slot className="w-5 h-5 text-slate-500">{children}</Slot>;
 }
 TextInputIcon.displayName = "TextInput.Icon";
 
+// eslint-disable-next-line react-refresh/only-export-components
 function TextInputInput(props: TextInputInputProps) {
   return (
     <input

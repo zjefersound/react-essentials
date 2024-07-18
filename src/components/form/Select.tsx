@@ -13,6 +13,7 @@ export interface SelectRootProps {
   required?: boolean;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 const SelectRoot = ({
   value,
   defaultValue,
@@ -50,6 +51,7 @@ const SelectRoot = ({
 );
 SelectRoot.displayName = "Select.Root";
 
+// eslint-disable-next-line react-refresh/only-export-components
 const SelectItem = React.forwardRef(
   (
     {
