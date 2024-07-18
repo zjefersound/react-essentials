@@ -24,7 +24,6 @@ export const InputRoot = React.forwardRef(
         text-sm
         text-slate-900
         focus-within:ring-2 focus-within:ring-slate-500
-        data-[placeholder]:text-slate-500
         placeholder:text-slate-500
       `,
           {

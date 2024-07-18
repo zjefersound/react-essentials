@@ -27,14 +27,14 @@ const SelectRoot = ({
     onValueChange={(value) => onChange(value === null ? "" : value)}
     required={required}
   >
-    <SelectPrimitive.Trigger asChild>
-      <InputRoot className="h-10 w-full">
+    <InputRoot className="h-10 w-full">
+      <SelectPrimitive.Trigger className="outline-0 bg-transparent flex-1 flex items-center space-x-2 text-slate-900 text-sm data-[placeholder]:text-slate-500">
         <SelectPrimitive.Value placeholder={placeholder} />
         <SelectPrimitive.Icon className="text-slate-500">
           <RxChevronDown />
         </SelectPrimitive.Icon>
-      </InputRoot>
-    </SelectPrimitive.Trigger>
+      </SelectPrimitive.Trigger>
+    </InputRoot>
     <SelectPrimitive.Portal>
       <SelectPrimitive.Content className="z-50 overflow-hidden bg-white border rounded shadow-[0px_10px_38px_-10px_rgba(0,_0,_0,_0.4),_0px_8px_16px_-15px_rgba(22,_23,_24,_0.2)]">
         <SelectPrimitive.ScrollUpButton className="flex items-center justify-center h-[25px] bg-white text-slate-300 cursor-default">
