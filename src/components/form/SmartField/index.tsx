@@ -25,7 +25,7 @@ export function SmartField({
             </TextInput.Icon>
           )}
           <TextInput.Input
-            value={value}
+            value={value as string}
             onChange={(e) => onChangeValue(e.target.value, field.id)}
             placeholder={field.placeholder}
             disabled={disabled}
@@ -36,7 +36,7 @@ export function SmartField({
       )}
       {field.type === "select" && (
         <Select.Root
-          value={value}
+          value={value as string}
           onChange={(value) => onChangeValue(value, field.id)}
           placeholder={field.placeholder}
         >
