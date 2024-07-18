@@ -8,7 +8,7 @@ interface SmartFieldProps extends IFieldHandlersProps {
   field: FieldProps;
 }
 
-export default function SmartField({
+export function SmartField({
   value,
   onChangeValue,
   disabled,
