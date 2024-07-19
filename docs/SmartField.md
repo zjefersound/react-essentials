@@ -8,18 +8,50 @@ It's a generic form field that will support many different sorts of inputs. The 
 
 (SmartForm is coming in future pull requests, will be linked here 🙂)
 
+## Get started
+
+Wanna skip knowledge and code? Take a look at the [🔗 React Essentials Storybook](https://react-essentials-opal.vercel.app/) 
+
+`Feeling curious? ☝🤓 Keep reading...`
+
 ## How data should be handled?
 
-For a form, the ideial way is to handle it as an object, for example: 
+The ideal approach for handling form data is to treat it as an object, for example:
+
 ```tsx
 const [data, setData] = useState({});
 ```
+
+The data must be typed and have an initial value:
+
+```tsx
+interface MyForm {
+  name: string;
+  email: string;
+}
+
+const defaultData: MyForm = {
+  name: "";
+  email: "";
+}
+const [data, setData] = useState<MyForm>(defaultData);
+```
+
+Then to set a new value we will set a value updating a specific key from the object:
+
+```tsx
+const handleChangeValue = (value: unknown, id: string) => {
+  setData(d => ({ ...d, [id]: value}))
+}
+```
+
+Knowing that we can get started with the typings.
 
 ## Types:
 
 ### Handlers
 
-Required props used to handle the form, such as setting the data, showing errors and preventing actions when disabled.
+These are the required props used to manage the form, including setting data, displaying errors, and preventing actions when disabled
 
 ```tsx
 interface IFieldHandlersProps {
@@ -30,9 +62,9 @@ interface IFieldHandlersProps {
 }
 ```
 
-### Field Props
+### FieldProps
  
-This is what the inputs will receive. Note that the ```FieldProps``` is a type that accepts different interfaces for each supported input.
+These are the props that inputs will receive. The FieldProps type accommodates different interfaces for each supported input type.
 
 ```tsx
 // Until this moment this is what every field must have. May have newer upgrades after feedbacks
@@ -41,7 +73,7 @@ interface IBaseField {
   label: string;
 }
 
-// Example of how to type a text or password input
+// Example of a text or password input interface
 interface ITextField extends IBaseField {
   type: "text" | "password";
   required: boolean;
@@ -49,8 +81,7 @@ interface ITextField extends IBaseField {
   Icon?: IconType;
 }
 
-
-// Example of how to type a select input
+// Example of a select input interface
 interface ISelectField extends IBaseField {
   type: "select";
   required: boolean;
@@ -58,11 +89,13 @@ interface ISelectField extends IBaseField {
   options: ISelectOption[];
 }
 
-// Field props will handle which props will be required based on the type
+// FieldProps type determines the required props based on the input type
 export type FieldProps = ITextField | ISelectField;
 ```
 
-### How does it work? 🤯
+### Why does it work? 🤯
+
+Example of how typescript handles types with different interfaces.
 
 ```ts
 interface ITextProps {
@@ -81,21 +114,23 @@ const myPropsAsText: TextOrNumberProps = {
   type: "text",
   value: "works fine!"
 }
-// ❌ Hold up bruh.
+
+// ❌ Error example
 const myPropsAsTextWrong: TextOrNumberProps = {
   type: "text",
-  value: 123 // gives error
+  value: 123 // Error: value should be a string
 }
-
 
 // ✅ Works!
 const myPropsAsNumber: TextOrNumberProps = {
-  type: "text",
+  type: "number",
   value: 123 // works
 }
-// ❌ Hold up bruh.
+
+// ❌ Error example
 const myPropsAsNumberWrong: TextOrNumberProps = {
-  type: "text",
-  value: "123??" // gives error
+  type: "number",
+  value: "123??" // Error: value should be a number
 }
+
 ```
