@@ -63,3 +63,8 @@ Some components depend on global types
   📂models
     (react-essentials required types...)
 ```
+
+
+## 📚 Important Docs:
+
+- [Smart Field](https://github.com/zjefersound/react-essentials/blob/main/docs/SmartField.md)
