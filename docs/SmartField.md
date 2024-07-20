@@ -62,35 +62,61 @@ interface IFieldHandlersProps {
 }
 ```
 
-### FieldProps
+### Field Config
  
-These are the props that inputs will receive. The FieldProps type accommodates different interfaces for each supported input type.
+Contains the configuration for each field in the form, including type (text, select, radio, etc.), placeholder text, validation rules, and whether options are fetched from an API.
 
 ```tsx
-// Until this moment this is what every field must have. May have newer upgrades after feedbacks
-interface IBaseField {
-  id: string;
+export type FieldType =
+  | "text"
+  | "currency"
+  | "email"
+  | "password"
+  // ... and others;
+
+export type ValidationRule = {
+  rule: (value: any) => boolean;
+  message: string;
+};
+
+interface BaseFieldConfig {
   label: string;
+  type: FieldType;
+  id: string;
+  options?: ISelectOption[];
+  required?: boolean;
+  fetchOptionsFromApi?: boolean;
+  validations?: ValidationRule[];
+  placeholder?: string;
 }
 
-// Example of a text or password input interface
-interface ITextField extends IBaseField {
-  type: "text" | "password";
-  required: boolean;
-  placeholder: string;
+interface FieldConfigWithIcon extends BaseFieldConfig {
+  // Types that accepts Icon
+  type:
+    | "text"
+    | "email"
+    | "password"
+    | "number"
+    | "currency"
+    | "tel"
+    | "url"
+    | "time"
+    | "date";
   Icon?: IconType;
 }
 
-// Example of a select input interface
-interface ISelectField extends IBaseField {
-  type: "select";
-  required: boolean;
-  placeholder: string;
-  options: ISelectOption[];
+// A field of type "currency" accepts Icon and other custom props
+interface FieldConfigCurrency extends FieldConfigWithIcon { 
+  type: "currency";
+  locale: string;
+  currency: string;
 }
 
 // FieldProps type determines the required props based on the input type
-export type FieldProps = ITextField | ISelectField;
+export type FieldConfig =
+  | FieldConfigCurrency
+  | FieldConfigWithIcon
+  | BaseFieldConfig;
 ```
 
 ### Why does it work? 🤯
