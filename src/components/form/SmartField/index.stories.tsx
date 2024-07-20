@@ -17,16 +17,32 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Text: Story = {
-  name: "As Textinput",
+  name: "Type \"Text\"",
   args: {
     errors: [],
     value: "",
     onChangeValue: fn(),
-    field: {
+    config: {
       type: "text",
       id: "name",
       label: "Name",
       placeholder: "Type your name",
+      required: true,
+    },
+  },
+};
+
+export const Password: Story = {
+  name: "Type \"password\"",
+  args: {
+    errors: [],
+    value: "",
+    onChangeValue: fn(),
+    config: {
+      type: "password",
+      id: "password",
+      label: "Password",
+      placeholder: "Type your password",
       required: true,
     },
   },
@@ -38,7 +54,7 @@ export const Select: Story = {
     errors: [],
     value: "",
     onChangeValue: fn(),
-    field: {
+    config: {
       type: "select",
       id: "language",
       label: "Language",
