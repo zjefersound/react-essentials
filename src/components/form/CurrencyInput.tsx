@@ -18,12 +18,22 @@ export interface CurrencyInputProps {
    * Number formatting from your location. Example: en-US
    */
   locale?: string;
+  /**
+   * Use for Validation
+   */
+  required?: boolean;
+  /**
+   * Prevent actions
+   */
+  disabled?: boolean;
 }
 export function CurrencyInput({
   onChange,
   defaultValue = 0,
   locale = "pt-BR",
   currency = "BRL",
+  required,
+  disabled,
 }: CurrencyInputProps) {
   const [displayValue, setDisplayValue] = useState(
     defaultValue?.toFixed(2).replace(/\D/g, "") || ""
@@ -63,11 +73,13 @@ export function CurrencyInput({
       type="text"
       onChange={(e) => {
         e.preventDefault();
-        onChange(numericValue)
+        onChange(numericValue);
       }}
       value={toCurrency(numericValue, { locale, currency })}
       onPaste={handlePaste}
       onKeyDown={handleKeyDown}
+      required={required}
+      disabled={disabled}
     />
   );
 }
