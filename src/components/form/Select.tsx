@@ -4,13 +4,15 @@ import clsx from "clsx";
 import { RxCheck, RxChevronDown, RxChevronUp } from "react-icons/rx";
 import { InputRoot } from "./atoms/InputRoot";
 
-export interface SelectRootProps {
+export interface SelectRootProps
+  extends Omit<SelectPrimitive.SelectProps, "autoComplete"> {
   children: ReactNode;
   placeholder?: string;
   defaultValue?: string;
   value: string;
   onChange: (value: string) => void;
   required?: boolean;
+  disabled?: boolean;
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -21,12 +23,16 @@ const SelectRoot = ({
   placeholder,
   onChange,
   required,
+  disabled,
+  ...props
 }: SelectRootProps) => (
   <SelectPrimitive.Root
     defaultValue={defaultValue}
     value={value}
     onValueChange={(value) => onChange(value === null ? "" : value)}
     required={required}
+    disabled={disabled}
+    {...props}
   >
     <InputRoot className="h-10 w-full">
       <SelectPrimitive.Trigger className="outline-0 bg-transparent flex-1 flex items-center space-x-2 text-slate-900 text-sm data-[placeholder]:text-slate-500">

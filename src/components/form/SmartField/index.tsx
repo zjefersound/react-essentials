@@ -54,6 +54,7 @@ export function SmartField({
               </TextInput.Icon>
             )}
             <TextInput.CurrencyInput
+              name={config.id}
               defaultValue={value as number}
               onChange={(value) => onChangeValue(value, config.id)}
               disabled={disabled}
@@ -64,9 +65,11 @@ export function SmartField({
       case "select":
         return (
           <Select.Root
+            name={config.id}
             value={value as string}
             onChange={(value) => onChangeValue(value, config.id)}
             placeholder={config.placeholder}
+            disabled={disabled}
           >
             <Select.Item value={null as unknown as string}>
               {config.placeholder}
@@ -108,6 +111,7 @@ export function SmartField({
                         : currentValues.filter((v) => v !== e.target.value);
                       onChangeValue(newValues, config.id);
                     }}
+                    disabled={disabled}
                   />
                   {option.label}
                 </div>
@@ -128,6 +132,7 @@ export function SmartField({
                     checked={value === option.value}
                     required={config.required}
                     onChange={(e) => onChangeValue(e.target.value, config.id)}
+                    disabled={disabled}
                   />
                   {option.label}
                 </div>
@@ -143,6 +148,7 @@ export function SmartField({
               checked={value as boolean}
               required={config.required}
               onChange={(e) => onChangeValue(e.target.checked, config.id)}
+              disabled={disabled}
             />
           </div>
         );
@@ -156,6 +162,7 @@ export function SmartField({
               onChange={(e) => {
                 onChangeValue(e.currentTarget.files, config.id);
               }}
+              disabled={disabled}
             />
           </div>
         );
@@ -168,6 +175,7 @@ export function SmartField({
               value={value as number}
               required={config.required}
               onChange={(e) => onChangeValue(e.target.value, config.id)}
+              disabled={disabled}
             />
           </div>
         );
