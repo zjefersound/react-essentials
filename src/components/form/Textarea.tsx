@@ -1,18 +1,14 @@
 import { TextareaHTMLAttributes } from "react";
 import { InputRoot } from "./atoms/InputRoot";
-import { clsx } from "clsx";
 
 export interface TextareaProps
   extends TextareaHTMLAttributes<HTMLTextAreaElement> {}
 
-export function Textarea(props: TextareaProps) {
+export function Textarea({ className, ...props }: TextareaProps) {
   return (
-    <InputRoot>
+    <InputRoot className={className}>
       <textarea
-        className={clsx(
-          "outline-0 bg-transparent flex-1 text-slate-900 text-sm placeholder:text-slate-500",
-          props.className
-        )}
+        className="outline-0 bg-transparent flex-1 text-slate-900 text-sm placeholder:text-slate-500"
         {...props}
       ></textarea>
     </InputRoot>
