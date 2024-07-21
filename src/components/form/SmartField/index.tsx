@@ -85,6 +85,7 @@ export function SmartField({
             value={value as string}
             placeholder={config.placeholder}
             required={config.required}
+            disabled={disabled}
             onChange={(e) => onChangeValue(e.target.value, config.id)}
           />
         );
