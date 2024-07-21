@@ -3,6 +3,7 @@ import { TextInput } from "../TextInput";
 import { Select } from "../Select";
 import { IFieldHandlersProps } from "./types/IFieldHandlersProps";
 import { FieldConfig } from "./types";
+import { Textarea } from "../Textarea";
 
 interface SmartFieldProps extends IFieldHandlersProps {
   config: FieldConfig;
@@ -34,6 +35,7 @@ export function SmartField({
               </TextInput.Icon>
             )}
             <TextInput.Input
+              name={config.id}
               value={value as string}
               onChange={(e) => onChangeValue(e.target.value, config.id)}
               placeholder={config.placeholder}
@@ -78,15 +80,13 @@ export function SmartField({
         );
       case "textarea":
         return (
-          <div>
-            <textarea
-              name={config.id}
-              value={value as string}
-              placeholder={config.placeholder}
-              required={config.required}
-              onChange={(e) => onChangeValue(e.target.value, config.id)}
-            />
-          </div>
+          <Textarea
+            name={config.id}
+            value={value as string}
+            placeholder={config.placeholder}
+            required={config.required}
+            onChange={(e) => onChangeValue(e.target.value, config.id)}
+          />
         );
       case "checkboxList":
         return (
