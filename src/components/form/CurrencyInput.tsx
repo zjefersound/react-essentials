@@ -3,6 +3,10 @@ import { toCurrency } from "../../utils/toCurrency";
 
 export interface CurrencyInputProps {
   /**
+   * HTML name
+   */
+  name?: string;
+  /**
    * Initial value for this component
    */
   defaultValue?: number;
@@ -28,6 +32,7 @@ export interface CurrencyInputProps {
   disabled?: boolean;
 }
 export function CurrencyInput({
+  name,
   onChange,
   defaultValue = 0,
   locale = "pt-BR",
@@ -68,6 +73,7 @@ export function CurrencyInput({
 
   return (
     <input
+      name={name}
       className="outline-0 bg-transparent flex-1 text-slate-900 text-sm placeholder:text-slate-500"
       inputMode="numeric"
       type="text"
