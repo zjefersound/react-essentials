@@ -1,7 +1,7 @@
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
 import clsx from "clsx";
-import { PiCheckBold } from "react-icons/pi";
 import { SemanticColor } from "../../models/semanticColor";
+import { MdCheck } from "react-icons/md";
 
 export interface CheckboxProps extends CheckboxPrimitive.CheckboxProps {
   color?: SemanticColor;
@@ -19,13 +19,16 @@ export function Checkbox({
       checked={checked}
       className={clsx(
         "size-6 rounded shrink-0 ring-1 ring-slate-300",
-        className
+        className,
+        {
+          "opacity-50 cursor-not-allowed": props.disabled,
+        }
       )}
       onClick={onChange}
       {...props}
     >
-      <CheckboxPrimitive.CheckboxIndicator asChild>
-        <PiCheckBold
+      <CheckboxPrimitive.CheckboxIndicator>
+        <MdCheck
           className={clsx("size-6 rounded p-[3px]", {
             "bg-slate-900 hover:bg-slate-800 active:bg-slate-700 text-white":
               color === "primary",

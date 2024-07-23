@@ -73,7 +73,7 @@ const formFields: FieldConfig[] = [
       { value: "other", label: "Other" },
     ],
   },
-  { label: "Subscribe", type: "checkbox", id: "subscribe" },
+  { label: "Subscription", type: "checkbox", id: "subscribe", checkLabel: "Subscribe to the newsletter" },
   {
     label: "Country",
     type: "select",
