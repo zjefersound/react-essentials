@@ -4,6 +4,8 @@ import { Select } from "../Select";
 import { IFieldHandlersProps } from "./types/IFieldHandlersProps";
 import { FieldConfig } from "./types";
 import { Textarea } from "../Textarea";
+import { Checkbox } from "../Checkbox";
+import { CheckLabel } from "../atoms/CheckLabel";
 
 interface SmartFieldProps extends IFieldHandlersProps {
   config: FieldConfig;
@@ -94,26 +96,28 @@ export function SmartField({
         );
       case "checkboxList":
         return (
-          <div>
+          <div className="space-y-2">
             {config.options &&
               config.options.map((option, index) => (
                 <div key={index}>
-                  <input
-                    type="checkbox"
+                  <Checkbox
+                    id={option.value}
                     name={config.id}
                     value={option.value}
                     checked={(value as string[]).includes(option.value)}
                     required={config.required}
-                    onChange={(e) => {
+                    onChange={() => {
                       const currentValues = value as string[];
-                      const newValues = e.target.checked
-                        ? [...currentValues, e.target.value]
-                        : currentValues.filter((v) => v !== e.target.value);
+                      const newValues = !(value as string[]).includes(
+                        option.value
+                      )
+                        ? [...currentValues, option.value]
+                        : currentValues.filter((v) => v !== option.value);
                       onChangeValue(newValues, config.id);
                     }}
                     disabled={disabled}
                   />
-                  {option.label}
+                  <CheckLabel htmlFor={option.value}>{option.label}</CheckLabel>
                 </div>
               ))}
           </div>
@@ -142,14 +146,17 @@ export function SmartField({
       case "checkbox":
         return (
           <div>
-            <input
-              type="checkbox"
+            <Checkbox
+              id={config.id}
               name={config.id}
               checked={value as boolean}
               required={config.required}
-              onChange={(e) => onChangeValue(e.target.checked, config.id)}
+              onChange={() => onChangeValue(!value, config.id)}
               disabled={disabled}
             />
+            {"checkLabel" in config && (
+              <CheckLabel htmlFor={config.id}>{config.checkLabel}</CheckLabel>
+            )}
           </div>
         );
       case "file":

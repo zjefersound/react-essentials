@@ -51,12 +51,18 @@ interface FieldConfigWithIcon extends BaseFieldConfig {
   Icon?: IconType;
 }
 
+interface FieldConfigCheckbox extends BaseFieldConfig {
+  type: "checkbox";
+  checkLabel?: string;
+}
+
 interface FieldConfigCurrency extends FieldConfigWithIcon {
   type: "currency";
   locale: string;
   currency: string;
 }
 export type FieldConfig =
+  | FieldConfigCheckbox
   | FieldConfigCurrency
   | FieldConfigWithIcon
   | BaseFieldConfig;
