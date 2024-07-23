@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Checkbox } from "./Checkbox";
+import { fn } from "@storybook/test";
 
 const meta = {
   title: "Form/Checkbox",
@@ -9,7 +10,10 @@ const meta = {
   },
   tags: ["autodocs"],
   argTypes: {},
-  args: {},
+  args: {
+    defaultChecked: true,
+    onChange: fn()
+  },
 } satisfies Meta<typeof Checkbox>;
 
 export default meta;
