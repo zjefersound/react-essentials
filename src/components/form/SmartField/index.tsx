@@ -6,6 +6,7 @@ import { FieldConfig } from "./types";
 import { Textarea } from "../Textarea";
 import { Checkbox } from "../Checkbox";
 import { CheckLabel } from "../atoms/CheckLabel";
+import { RadioGroup } from "../RadioGroup";
 
 interface SmartFieldProps extends IFieldHandlersProps {
   config: FieldConfig;
@@ -124,24 +125,21 @@ export function SmartField({
         );
       case "radio":
         return (
-          <div>
+          <RadioGroup.Root
+            id={config.id}
+            value={value as string}
+            name={config.id}
+            onChange={(value) => onChangeValue(value, config.id)}
+            disabled={disabled}
+            required={config.required}
+          >
             {config.options &&
-              config.options.map((option, index) => (
-                <div key={index}>
-                  <input
-                    type="radio"
-                    id={config.id}
-                    name={config.id}
-                    value={option.value}
-                    checked={value === option.value}
-                    required={config.required}
-                    onChange={(e) => onChangeValue(e.target.value, config.id)}
-                    disabled={disabled}
-                  />
+              config.options.map((option) => (
+                <RadioGroup.Item key={option.value} value={option.value}>
                   {option.label}
-                </div>
+                </RadioGroup.Item>
               ))}
-          </div>
+          </RadioGroup.Root>
         );
       case "checkbox":
         return (
