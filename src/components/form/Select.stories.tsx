@@ -1,3 +1,4 @@
+import { fn } from "@storybook/test";
 import { Select, SelectRootProps } from "./Select";
 import { Meta, StoryObj } from "@storybook/react";
 
@@ -12,9 +13,7 @@ const meta = {
     placeholder: "Select the state",
     defaultValue: "",
     required: true,
-    onChange: (value) => {
-      console.log(value);
-    },
+    onChange: fn(),
     children: [
       <Select.Item key={1} value="SC">Santa Catarina</Select.Item>,
       <Select.Item key={2} value="SP">São Paulo</Select.Item>,
