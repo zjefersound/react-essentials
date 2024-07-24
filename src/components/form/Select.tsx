@@ -5,7 +5,7 @@ import { RxCheck, RxChevronDown, RxChevronUp } from "react-icons/rx";
 import { InputRoot } from "./atoms/InputRoot";
 
 export interface SelectRootProps
-  extends Omit<SelectPrimitive.SelectProps, "autoComplete"> {
+  extends Omit<SelectPrimitive.SelectProps, "autoComplete" | "onValueChange"> {
   children: ReactNode;
   placeholder?: string;
   defaultValue?: string;
