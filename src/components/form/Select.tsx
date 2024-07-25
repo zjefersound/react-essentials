@@ -35,7 +35,7 @@ const SelectRoot = ({
     {...props}
   >
     <InputRoot className="h-10 w-full">
-      <SelectPrimitive.Trigger className="outline-0 bg-transparent flex-1 flex items-center space-x-2 text-slate-900 text-sm data-[placeholder]:text-slate-500">
+      <SelectPrimitive.Trigger className="outline-0 bg-transparent flex-1 flex items-center space-x-2 text-slate-900 text-sm data-[placeholder]:text-slate-500 disabled:opacity-50 disabled:cursor-not-allowed">
         <SelectPrimitive.Value placeholder={placeholder} />
         <SelectPrimitive.Icon className="text-slate-500">
           <RxChevronDown />

@@ -8,6 +8,7 @@ import { Checkbox } from "../Checkbox";
 import { CheckLabel } from "../atoms/CheckLabel";
 import { RadioGroup } from "../RadioGroup";
 import { Slider } from "../Slider";
+import clsx from "clsx";
 
 interface SmartFieldProps extends IFieldHandlersProps {
   config: FieldConfig;
@@ -119,7 +120,14 @@ export function SmartField({
                     }}
                     disabled={disabled}
                   />
-                  <CheckLabel htmlFor={option.value}>{option.label}</CheckLabel>
+                  <CheckLabel
+                    htmlFor={option.value}
+                    className={clsx({
+                      "opacity-50 cursor-not-allowed": disabled,
+                    })}
+                  >
+                    {option.label}
+                  </CheckLabel>
                 </div>
               ))}
           </div>
@@ -154,7 +162,14 @@ export function SmartField({
               disabled={disabled}
             />
             {"checkLabel" in config && (
-              <CheckLabel htmlFor={config.id}>{config.checkLabel}</CheckLabel>
+              <CheckLabel
+                htmlFor={config.id}
+                className={clsx({
+                  "opacity-50 cursor-not-allowed": disabled,
+                })}
+              >
+                {config.checkLabel}
+              </CheckLabel>
             )}
           </div>
         );

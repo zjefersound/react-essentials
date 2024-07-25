@@ -2,6 +2,8 @@ import { useState } from "react";
 import { SmartField } from "../components/form/SmartField";
 import { FieldConfig, FormFields } from "../components/form/SmartField/types";
 import { MdMailOutline } from "react-icons/md";
+import { Checkbox } from "../components/form/Checkbox";
+import { CheckLabel } from "../components/form/atoms/CheckLabel";
 
 const formFields: FieldConfig[] = [
   {
@@ -138,11 +140,15 @@ export function SmartFieldExamples() {
     }
     return acc;
   }, {} as FormFields);
-  const disabled = false;
+  const [disabled, setDisabled] = useState(false);
   const [data, setData] = useState(initialFormState);
   return (
     <div className="p-8 space-y-4">
       <h1 className="font-bold">All Smart Fields</h1>
+      <div className="flex border-b pb-4">
+        <Checkbox checked={disabled} onChange={() => setDisabled(!disabled)} />
+        <CheckLabel>Disabled all fields</CheckLabel>
+      </div>
       {formFields.map((field) => (
         <SmartField
           key={field.id}
