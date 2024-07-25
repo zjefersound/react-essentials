@@ -145,9 +145,9 @@ export function SmartFieldExamples() {
   return (
     <div className="p-8 space-y-4">
       <h1 className="font-bold">All Smart Fields</h1>
-      <div>
+      <div className="flex border-b pb-4">
         <Checkbox checked={disabled} onChange={() => setDisabled(!disabled)} />
-        <CheckLabel>Disabled</CheckLabel>
+        <CheckLabel>Disabled all fields</CheckLabel>
       </div>
       {formFields.map((field) => (
         <SmartField
