@@ -13,7 +13,7 @@ export type FieldType =
   | "select"
   | "textarea"
   | "file"
-  | "range"
+  | "slider"
   | "color"
   | "time"
   | "tel"
@@ -56,12 +56,25 @@ interface FieldConfigCheckbox extends BaseFieldConfig {
   checkLabel?: string;
 }
 
+interface FieldConfigSlider extends BaseFieldConfig {
+  type: "slider";
+  orientation?: "vertical" | "horizontal";
+  min?: number;
+  max?: number;
+  step?: number;
+  minStepsBetweenThumbs?: number;
+  inverted?: boolean;
+  width?: string;
+  height?: string;
+}
+
 interface FieldConfigCurrency extends FieldConfigWithIcon {
   type: "currency";
   locale: string;
   currency: string;
 }
 export type FieldConfig =
+  | FieldConfigSlider
   | FieldConfigCheckbox
   | FieldConfigCurrency
   | FieldConfigWithIcon

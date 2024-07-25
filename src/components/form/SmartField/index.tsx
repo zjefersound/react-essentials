@@ -7,6 +7,7 @@ import { Textarea } from "../Textarea";
 import { Checkbox } from "../Checkbox";
 import { CheckLabel } from "../atoms/CheckLabel";
 import { RadioGroup } from "../RadioGroup";
+import { Slider } from "../Slider";
 
 interface SmartFieldProps extends IFieldHandlersProps {
   config: FieldConfig;
@@ -171,18 +172,17 @@ export function SmartField({
             />
           </div>
         );
-      case "range":
+      case "slider":
         return (
-          <div>
-            <input
-              type="range"
-              name={config.id}
-              value={value as number}
-              required={config.required}
-              onChange={(e) => onChangeValue(e.target.value, config.id)}
-              disabled={disabled}
-            />
-          </div>
+          <Slider
+            {...config}
+            id={config.id}
+            name={config.id}
+            value={[value as number]}
+            required={config.required}
+            onChange={(v) => onChangeValue(v[0], config.id)}
+            disabled={disabled}
+          />
         );
 
       default:
