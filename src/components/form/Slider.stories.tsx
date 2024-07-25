@@ -32,7 +32,7 @@ const meta = {
     step: 1,
     onChange: fn(),
     disabled: false,
-    inverted: false
+    inverted: false,
   },
 } satisfies Meta<typeof Slider>;
 
@@ -43,6 +43,10 @@ export const Default: Story = {
   args: {},
 };
 
+export const Inverted: Story = {
+  args: { inverted: true  },
+};
+
 export const Vertical: Story = {
   args: {
     orientation: "vertical",
@@ -51,6 +55,12 @@ export const Vertical: Story = {
 
 export const Range: Story = {
   args: {
-    defaultValue: [0, 5, 8],
+    defaultValue: [1, 5],
+  },
+};
+
+export const TripleRange: Story = {
+  args: {
+    defaultValue: [1, 3, 5],
   },
 };

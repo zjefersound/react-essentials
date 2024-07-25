@@ -4,7 +4,7 @@ import clsx from "clsx";
 interface SliderProps
   extends Omit<
     SliderPrimitive.SliderProps,
-    "className" | "children" | "onValueChange" | "onChange"
+    "className" | "children" | "onValueChange" | "onChange" | "asChild"
   > {
   height?: string;
   width?: string;
