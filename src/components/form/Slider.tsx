@@ -25,7 +25,8 @@ export function Slider({
       {...props}
       onValueChange={onChange}
       className={clsx("relative flex items-center select-none touch-none", {
-        "flex-col": orientation === "vertical",
+        "flex-col w-5": orientation === "vertical",
+        "h-5": orientation === "horizontal",
         [`h-[${height}]`]: height,
         "h-80": !height && orientation === "vertical",
         "w-min": !width && orientation === "vertical",
