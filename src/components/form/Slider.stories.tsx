@@ -28,10 +28,11 @@ const meta = {
     },
   },
   args: {
-    max: 100,
+    max: 10,
     step: 1,
     onChange: fn(),
     disabled: false,
+    inverted: false
   },
 } satisfies Meta<typeof Slider>;
 
@@ -50,6 +51,6 @@ export const Vertical: Story = {
 
 export const Range: Story = {
   args: {
-    defaultValue: [0, 50],
+    defaultValue: [0, 5, 8],
   },
 };

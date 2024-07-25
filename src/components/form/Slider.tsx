@@ -20,6 +20,7 @@ export function Slider({
   orientation = "horizontal",
   ...props
 }: SliderProps) {
+  const numberOfThumbs = props.value?.length || props.defaultValue?.length || 1;
   return (
     <SliderPrimitive.Root
       {...props}
@@ -50,8 +51,15 @@ export function Slider({
           })}
         />
       </SliderPrimitive.Track>
-      <SliderPrimitive.Thumb className="block size-5 rounded-full bg-slate-900 hover:bg-slate-800" />
-      <SliderPrimitive.Thumb className="block size-5 rounded-full bg-slate-900 hover:bg-slate-800" />
+
+      {Array(numberOfThumbs)
+        .fill(0)
+        .map((_, index) => (
+          <SliderPrimitive.Thumb
+            key={index}
+            className="block size-5 rounded-full bg-slate-900 hover:bg-slate-800"
+          />
+        ))}
     </SliderPrimitive.Root>
   );
 }
