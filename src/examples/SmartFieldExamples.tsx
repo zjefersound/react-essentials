@@ -73,7 +73,12 @@ const formFields: FieldConfig[] = [
       { value: "other", label: "Other" },
     ],
   },
-  { label: "Subscription", type: "checkbox", id: "subscribe", checkLabel: "Subscribe to the newsletter" },
+  {
+    label: "Subscription",
+    type: "checkbox",
+    id: "subscribe",
+    checkLabel: "Subscribe to the newsletter",
+  },
   {
     label: "Country",
     type: "select",
@@ -92,7 +97,7 @@ const formFields: FieldConfig[] = [
     placeholder: "Enter your comments",
   },
   { label: "Profile Picture", type: "file", id: "profilePicture" },
-  { label: "Volume", type: "range", id: "volume" },
+  { label: "Volume", type: "slider", id: "volume", step: 10 },
   { label: "Favorite Color", type: "color", id: "favcolor" },
   { label: "Meeting Time", type: "time", id: "meetingTime" },
   {
@@ -125,6 +130,8 @@ export function SmartFieldExamples() {
     } else if (field.type === "checkbox") {
       acc[field.id] = false;
     } else if (field.type === "currency") {
+      acc[field.id] = 0;
+    } else if (field.type === "slider") {
       acc[field.id] = 0;
     } else {
       acc[field.id] = "";
