@@ -9,26 +9,32 @@ This project uses the tailwind colors as its core, but you can customize it to y
 👉 Take a look at the [🔗 TailwindCSS colors documentation](https://tailwindcss.com/docs/customizing-colors)
 
 <ColorPalette>
-  <ColorItem
-    title="Grayscale"
-    subtitle="Neutral colors"
-    colors={{
-      white: "#ffffff",
-      "slate-100": "#f1f5f9",
-      "slate-200": "#e2e8f0",
-      "slate-300": "#cbd5e1",
-      "slate-400": "#94a3b8",
-      "slate-500": "#64748b",
-      "slate-600": "#475569",
-      "slate-700": "#334155 ",
-      "slate-800": "#1e293b",
-      "slate-900": "#0f172a",
-    }}
-  />
+  <div style={{ overflow: 'auto'}}>
+    <ColorItem
+      title="Grayscale"
+      subtitle="Neutral colors"
+      colors={{
+        white: "#ffffff",
+        "slate-100": "#f1f5f9",
+        "slate-200": "#e2e8f0",
+        "slate-300": "#cbd5e1",
+        "slate-400": "#94a3b8",
+        "slate-500": "#64748b",
+        "slate-600": "#475569",
+        "slate-700": "#334155 ",
+        "slate-800": "#1e293b",
+        "slate-900": "#0f172a",
+      }}
+    />
+  </div>
+
+  <h2 style={{ fontSize: 24, marginBottom: '30px'}}>Semantic Colors:</h2>
+  
   <ColorItem
     title="Success"
     subtitle="Positive feedback colors"
     colors={{
+      "emerald-100": "#d1fae5",
       "emerald-600": "#059669",
       "emerald-700": "#047857",
       "emerald-800": "#065f46",
@@ -38,9 +44,30 @@ This project uses the tailwind colors as its core, but you can customize it to y
     title="Danger"
     subtitle="Negative feedback colors"
     colors={{
+      "red-100": "#fee2e2",
       "red-600": "#dc2626",
       "red-700": "#b91c1c",
       "red-800": "#991b1b",
+    }}
+  />
+  <ColorItem
+    title="Info"
+    subtitle="Informative feedback colors"
+    colors={{
+      "blue-100": "#dbeafe",
+      "blue-600": "#2563eb",
+      "blue-700": "#1d4ed8",
+      "blue-800": "#1e40af",
+    }}
+  />
+  <ColorItem
+    title="Warning"
+    subtitle="Warning feedback colors"
+    colors={{
+      "amber-100": "#fef3c7",
+      "amber-600": "#ca8a04",
+      "amber-700": "#a16207",
+      "amber-800": "#854d0e",
     }}
   />
   <ColorItem
@@ -48,4 +75,5 @@ This project uses the tailwind colors as its core, but you can customize it to y
     subtitle="Main color"
     colors={{ "slate-900": "#18181b" }}
   />
+
 </ColorPalette>

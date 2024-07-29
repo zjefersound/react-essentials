@@ -12,7 +12,7 @@ const meta = {
   argTypes: {},
   args: {
     defaultChecked: true,
-    onChange: fn()
+    onChange: fn(),
   },
 } satisfies Meta<typeof Checkbox>;
 
@@ -25,24 +25,36 @@ export const Default: Story = {
 
 export const Secondary: Story = {
   args: {
-    color: 'secondary'
+    color: "secondary",
   },
 };
 
 export const Tertiary: Story = {
   args: {
-    color: 'tertiary'
+    color: "tertiary",
   },
 };
 
 export const Danger: Story = {
   args: {
-    color: 'danger'
+    color: "danger",
   },
-}
+};
 
 export const Success: Story = {
   args: {
-    color: 'success'
+    color: "success",
+  },
+};
+
+export const Warning: Story = {
+  args: {
+    color: "warning",
+  },
+};
+
+export const Info: Story = {
+  args: {
+    color: "info",
   },
 };

@@ -40,6 +40,10 @@ export function Checkbox({
               color === "success",
             "bg-red-600 hover:bg-red-700 active:bg-red-800 text-white":
               color === "danger",
+            "bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white":
+              color === "info",
+            "bg-amber-600 hover:bg-amber-700 active:bg-amber-800 text-white":
+              color === "warning",
           })}
         />
       </CheckboxPrimitive.CheckboxIndicator>

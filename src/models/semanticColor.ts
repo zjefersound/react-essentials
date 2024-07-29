@@ -1,1 +1,8 @@
-export type SemanticColor = "primary" | "danger" | "success" | "secondary" | "tertiary";
+export type SemanticColor =
+  | "primary"
+  | "danger"
+  | "success"
+  | "secondary"
+  | "tertiary"
+  | "warning"
+  | "info";

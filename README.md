@@ -67,4 +67,5 @@ Some components depend on global types
 
 ## 📚 Important Docs:
 
-- [Smart Field](https://github.com/zjefersound/react-essentials/blob/main/docs/SmartField.md)
+- [Smart Field](/docs/SmartField.md)
+- [Toast](/docs/Toast.md)
