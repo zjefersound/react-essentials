@@ -5,15 +5,16 @@ import {
   AiOutlineCloseCircle,
   AiOutlineExclamationCircle,
 } from "react-icons/ai";
-import { SemanticColor } from "../../models/semanticColor";
 
 export interface ToastProps {
-  color?: Omit<SemanticColor, "primary" | "secondary" | "tertiary">;
+  color?: "success" | "danger" | "info" | "warning";
   title: string;
   description?: string;
   open: boolean;
   setOpen: (value: boolean) => void;
   duration?: number;
+  actionText?: string;
+  onActionClick?: () => void;
 }
 
 const IconByType = {
@@ -30,16 +31,18 @@ export function Toast({
   open,
   setOpen,
   duration = 3000,
+  actionText = "Ok",
+  onActionClick,
 }: ToastProps) {
   const Icon = IconByType[color as keyof typeof IconByType];
   return (
     <ToastPrimitive.Provider swipeDirection="right" duration={duration}>
       <ToastPrimitive.Root
-        className="bg-white rounded-md shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] p-[15px] grid [grid-template-areas:_'title_action'_'description_action'] grid-cols-[auto_max-content] gap-x-[15px] items-center data-[state=open]:animate-slideIn data-[state=closed]:animate-hide data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=cancel]:translate-x-0 data-[swipe=cancel]:transition-[transform_200ms_ease-out] data-[swipe=end]:animate-swipeOut"
+        className="bg-white rounded-md shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] p-4 grid [grid-template-areas:_'title_action'_'description_action'] grid-cols-[auto_max-content] gap-x-4 items-center data-[state=open]:animate-slideIn data-[state=closed]:animate-hide data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=cancel]:translate-x-0 data-[swipe=cancel]:transition-[transform_200ms_ease-out] data-[swipe=end]:animate-swipeOut"
         open={open}
         onOpenChange={setOpen}
       >
-        <ToastPrimitive.Title className="[grid-area:_title] mb-[5px] font-medium text-zinc-900 text-md">
+        <ToastPrimitive.Title className="[grid-area:_title] mb-[5px] font-medium text-zinc-900 leading-5">
           <span className="flex items-center">
             <Icon
               className={clsx("h-6 w-6 mr-2", {
@@ -69,15 +72,16 @@ export function Toast({
                 "bg-emerald-100 text-emerald-600 shadow-emerald-700 hover:shadow-emerald-700  focus:shadow-emerald-700":
                   color === "success",
                 "bg-red-100 text-red-600 shadow-red-700 hover:shadow-red-700  focus:shadow-red-700":
-                  color === "error",
+                  color === "danger",
                 "bg-blue-100 text-blue-600 shadow-blue-700 hover:shadow-blue-700  focus:shadow-blue-700":
                   color === "info",
                 "bg-amber-100 text-amber-600 shadow-amber-700 hover:shadow-amber-700  focus:shadow-amber-700":
                   color === "warning",
               }
             )}
+            onClick={onActionClick}
           >
-            Ok
+            {actionText}
           </button>
         </ToastPrimitive.Action>
       </ToastPrimitive.Root>

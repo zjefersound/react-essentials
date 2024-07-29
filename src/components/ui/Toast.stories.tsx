@@ -53,3 +53,12 @@ export const Warning: Story = {
     description: 'It\'s not an error, but you might wanna prevent something.',
   },
 };
+
+export const CustomAction: Story = {
+  args: {
+    title: "Database deleted",
+    description: "You've deleted your whole database :)",
+    onActionClick: fn(),
+    actionText: "Undo"
+  },
+};
