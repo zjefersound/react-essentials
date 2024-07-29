@@ -13,6 +13,7 @@ export interface SelectRootProps
   onChange: (value: string) => void;
   required?: boolean;
   disabled?: boolean;
+  color?: "success" | "danger";
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -24,6 +25,7 @@ const SelectRoot = ({
   onChange,
   required,
   disabled,
+  color,
   ...props
 }: SelectRootProps) => (
   <SelectPrimitive.Root
@@ -34,7 +36,7 @@ const SelectRoot = ({
     disabled={disabled}
     {...props}
   >
-    <InputRoot className="h-10 w-full">
+    <InputRoot className="h-10 w-full" color={color}>
       <SelectPrimitive.Trigger className="outline-0 bg-transparent flex-1 flex items-center space-x-2 text-slate-900 text-sm data-[placeholder]:text-slate-500 disabled:opacity-50 disabled:cursor-not-allowed">
         <SelectPrimitive.Value placeholder={placeholder} />
         <SelectPrimitive.Icon className="text-slate-500">
