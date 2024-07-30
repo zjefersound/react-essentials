@@ -21,3 +21,14 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {},
 };
+
+export const WithError: Story = {
+  args: {
+    color: "danger"
+  }
+};
+export const WithSuccess: Story = {
+  args: {
+    color: "success"
+  }
+};
