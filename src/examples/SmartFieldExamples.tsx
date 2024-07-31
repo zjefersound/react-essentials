@@ -98,7 +98,7 @@ const formFields: FieldConfig[] = [
     id: "comments",
     placeholder: "Enter your comments",
   },
-  { label: "Profile Picture", type: "file", id: "profilePicture" },
+  { label: "Profile Picture", type: "files", id: "profilePicture" },
   { label: "Volume", type: "slider", id: "volume", step: 10 },
   { label: "Favorite Color", type: "color", id: "favcolor" },
   { label: "Meeting Time", type: "time", id: "meetingTime" },
@@ -127,7 +127,7 @@ const formFields: FieldConfig[] = [
 ];
 export function SmartFieldExamples() {
   const initialFormState = formFields.reduce((acc, field) => {
-    if (field.type === "checkboxList") {
+    if (field.type === "checkboxList" || field.type === "files") {
       acc[field.id] = [];
     } else if (field.type === "checkbox") {
       acc[field.id] = false;

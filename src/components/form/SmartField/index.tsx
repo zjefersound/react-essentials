@@ -9,6 +9,7 @@ import { CheckLabel } from "../atoms/CheckLabel";
 import { RadioGroup } from "../RadioGroup";
 import { Slider } from "../Slider";
 import clsx from "clsx";
+import { FileInput, UploadedFile } from "../FileInput";
 
 interface SmartFieldProps extends IFieldHandlersProps {
   config: FieldConfig;
@@ -173,19 +174,24 @@ export function SmartField({
             )}
           </div>
         );
-      case "file":
+      case "files":
         return (
-          <div>
-            <input
-              type="file"
-              name={config.id}
-              required={config.required}
-              onChange={(e) => {
-                onChangeValue(e.currentTarget.files, config.id);
-              }}
-              disabled={disabled}
-            />
-          </div>
+          <FileInput
+            name={config.id}
+            required={config.required}
+            disabled={disabled}
+            files={value as UploadedFile[]}
+            // onChange={(files) => {
+            //   onChangeValue(files, config.id);
+            // }}
+            onFilesChange={(files) => onChangeValue(files, config.id)}
+            onFileRemove={(file) =>
+              onChangeValue(
+                (value as UploadedFile[]).filter((f) => f.name !== file.name),
+                config.id
+              )
+            }
+          />
         );
       case "slider":
         return (

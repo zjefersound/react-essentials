@@ -12,7 +12,7 @@ export type FieldType =
   | "checkbox"
   | "select"
   | "textarea"
-  | "file"
+  | "files"
   | "slider"
   | "color"
   | "time"
@@ -73,7 +73,15 @@ interface FieldConfigCurrency extends FieldConfigWithIcon {
   locale: string;
   currency: string;
 }
+
+interface FieldConfigFile extends BaseFieldConfig {
+  type: "files";
+  maxFileSize?: number;
+  allowedFileTypes?: string[];
+}
+
 export type FieldConfig =
+  | FieldConfigFile
   | FieldConfigSlider
   | FieldConfigCheckbox
   | FieldConfigCurrency

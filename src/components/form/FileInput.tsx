@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { MdOutlineAttachment, MdOutlineDeleteOutline } from "react-icons/md";
 import { printFileSize } from "../../utils/printFileSize";
 
-interface UploadedFile {
+export interface UploadedFile {
   name: string;
   size: number;
   type: string;
@@ -12,6 +12,8 @@ interface UploadedFile {
 
 export interface FileInputProps {
   name: string;
+  required?: boolean;
+  disabled?: boolean;
   files: UploadedFile[];
   onFilesChange: (files: UploadedFile[]) => void;
   onFileRemove: (file: UploadedFile) => void;
@@ -21,6 +23,8 @@ export interface FileInputProps {
 
 export function FileInput({
   name,
+  required,
+  disabled,
   files = [],
   onFilesChange,
   onFileRemove,
@@ -122,6 +126,8 @@ export function FileInput({
             className="w-full h-full left-0 top-0 absolute flex -z-10 outline-0"
             onChange={handleInputChange}
             aria-describedby="selected-files"
+            required={required}
+            disabled={disabled}
           />
           <p className="text-center text-slate-500">
             Drag & drop files here, or click to select files
