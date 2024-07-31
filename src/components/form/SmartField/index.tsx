@@ -176,22 +176,21 @@ export function SmartField({
         );
       case "files":
         return (
-          <FileInput
-            name={config.id}
-            required={config.required}
-            disabled={disabled}
-            files={value as UploadedFile[]}
-            // onChange={(files) => {
-            //   onChangeValue(files, config.id);
-            // }}
-            onFilesChange={(files) => onChangeValue(files, config.id)}
-            onFileRemove={(file) =>
-              onChangeValue(
-                (value as UploadedFile[]).filter((f) => f.name !== file.name),
-                config.id
-              )
-            }
-          />
+          <FileInput.Root>
+            <FileInput.Dropzone>
+              <FileInput.Input
+                name={config.id}
+                required={config.required}
+                disabled={disabled}
+                files={value as UploadedFile[]}
+                onFilesChange={(files) => onChangeValue(files, config.id)}
+              />
+            </FileInput.Dropzone>
+            <FileInput.List
+              files={value as UploadedFile[]}
+              onFilesChange={(files) => onChangeValue(files, config.id)}
+            />
+          </FileInput.Root>
         );
       case "slider":
         return (
