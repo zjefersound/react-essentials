@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { FileInput } from "./FileInput";
+import { FileInput, FileInputProps } from "./FileInput";
+import { fn } from "@storybook/test";
 
 const meta = {
   title: "Form/FileInput",
@@ -10,14 +11,16 @@ const meta = {
   tags: ["autodocs"],
   argTypes: {},
   args: {
+    files: [],
+    onFilesChange: fn(),
+    onFileRemove: fn(),
+    name: "input",
   },
-} satisfies Meta<typeof FileInput>;
+} as Meta<FileInputProps>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
-  args: {
-  },
+  args: {},
 };
-

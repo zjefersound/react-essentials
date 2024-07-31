@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import React, { useEffect, useState } from "react";
 import { MdOutlineAttachment, MdOutlineDeleteOutline } from "react-icons/md";
+import { printFileSize } from "../../utils/printFileSize";
 
 interface UploadedFile {
   name: string;
@@ -9,15 +10,17 @@ interface UploadedFile {
   dataURL: string;
 }
 
-interface FileInputProps {
-  files?: UploadedFile[];
-  onFilesChange?: (files: UploadedFile[]) => void;
-  onFileRemove?: (file: UploadedFile) => void;
+export interface FileInputProps {
+  name: string;
+  files: UploadedFile[];
+  onFilesChange: (files: UploadedFile[]) => void;
+  onFileRemove: (file: UploadedFile) => void;
   maxFileSize?: number; // in bytes
   allowedFileTypes?: string[];
 }
 
 export function FileInput({
+  name,
   files = [],
   onFilesChange,
   onFileRemove,
@@ -26,12 +29,6 @@ export function FileInput({
 }: FileInputProps) {
   const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>(files);
   const [isDragActive, setIsDragActive] = useState(false);
-
-  useEffect(() => {
-    if (files) {
-      setUploadedFiles(files);
-    }
-  }, [files]);
 
   const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -97,13 +94,16 @@ export function FileInput({
     onFileRemove && onFileRemove(file);
   };
 
+  useEffect(() => {
+    if (files) setUploadedFiles(files);
+  }, [files]);
+
   return (
-    <div className="w-full max-w-xl mx-auto">
-      <label htmlFor="myFile">
+    <div className="w-full max-w-xl">
+      <label htmlFor={name}>
         <div
-          role="button"
           className={clsx(
-            "border-2 border-dashed p-4 rounded-lg hover:bg-slate-100 transition-colors",
+            "border-2 border-dashed p-4 rounded-lg hover:bg-slate-100 transition-colors relative focus-within:ring-2 focus-within:ring-slate-500",
             {
               "border-slate-500 bg-slate-200": isDragActive,
               "border-slate-300 bg-white": !isDragActive,
@@ -115,18 +115,20 @@ export function FileInput({
           onDrop={handleDrop}
         >
           <input
-            id="myFile"
+            id={name}
+            name={name}
             type="file"
             multiple
-            className="hidden"
+            className="w-full h-full left-0 top-0 absolute flex -z-10 outline-0"
             onChange={handleInputChange}
+            aria-describedby="selected-files"
           />
           <p className="text-center text-slate-500">
             Drag & drop files here, or click to select files
           </p>
         </div>
       </label>
-      <ul className="mt-4">
+      <ul className="mt-4" id="selected-files">
         {uploadedFiles.map((file, index) => (
           <li
             key={index}
@@ -139,7 +141,7 @@ export function FileInput({
               {file.name}
             </span>
             <span className="text-sm text-slate-500">
-              {(file.size / 1024).toFixed(2)} KB
+              {printFileSize(file.size)}
             </span>
             <button
               type="button"
