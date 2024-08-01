@@ -6,22 +6,21 @@ Toasts are UI resources used to send a feedback to the user after performing an 
 
 The Toast component is build using [Radix's primitive component](https://www.radix-ui.com/primitives/docs/components/toast). (You can change styles to fit your project.)
 
-Install the dependency:
+1. Install the dependency:
 ```bash
 npm install @radix-ui/react-toast
 ```
 
-## Structure
+2. Copy component from [`Toast.tsx`](../src/components/ui/Toast.tsx)
 
-Copy these files into your project:
+3. Copy context from [`ToastContext.tsx`](../src/contexts/ToastContext.tsx)
 
-- Component: `src/components/ui/Toast.tsx`
-- Context: `src/contexts/ToastContext.tsx`
-- Hook: `src/hooks/useToast.ts`
+4. Copy hook from [`useToast.ts`](../src/hooks/useToast.ts)
 
-## Tailwind Styles
+5. Copy example from [`ToastExample.tsx`](../src/examples/ToastExample.tsx)
 
-If you're using the default styles from this repo, you need to add the following animations to your `tailwind.config.js` file.
+6. Copy animations to `tailwind.config.js`
+
 ```javascript
 // tailwind.config.js
 /** @type {import('tailwindcss').Config} */
@@ -137,7 +136,7 @@ function ToastUsageExample() {
 }
 ```
 
-4. Recommendations
+## Recommendations
 
 Save the toast messages in a separate json ou constant:
 
