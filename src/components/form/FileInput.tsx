@@ -304,8 +304,8 @@ const FileInputFilePreview = forwardRef(
       );
     }
     return (
-      <div className="w-full h-full absolute top-0 left-0 object-cover flex items-center justify-center bg-slate-200 text-slate-500">
-        <span className="text-sm">File</span>
+      <div className="w-full h-full absolute top-0 left-0 object-cover flex items-center justify-center bg-slate-100 text-slate-500">
+        <span className="text-sm">{file.name}</span>
       </div>
     );
   }
