@@ -48,7 +48,7 @@ function FileInputDropzone({
     <div
       style={{ height, width }}
       className={clsx(
-        "relative focus-within:ring-2 rounded-md overflow-hidden",
+        "relative focus-within:ring-2 rounded-md overflow-hidden max-w-full",
         {
           "focus-within:ring-slate-500": !color,
           "border-red-600 border": color === "danger",
