@@ -176,7 +176,7 @@ export function SmartField({
         );
       case "file":
         return (
-          <FileInput.Root disabled={disabled}>
+          <FileInput.Root disabled={disabled} className="max-w-xl">
             <FileInput.Dropzone
               height={"height" in config ? config.height : 200}
               width={"width" in config ? config.width : undefined}
@@ -208,7 +208,7 @@ export function SmartField({
         );
       case "files":
         return (
-          <FileInput.Root disabled={disabled}>
+          <FileInput.Root disabled={disabled} className="max-w-xl">
             <FileInput.Dropzone
               height={"height" in config ? config.height : undefined}
               width={"width" in config ? config.width : undefined}

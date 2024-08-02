@@ -13,13 +13,14 @@ export interface UploadedFile {
 
 interface FileInputRootProps {
   disabled?: boolean;
+  className?: string;
   children: ReactNode;
 }
 // eslint-disable-next-line react-refresh/only-export-components
-function FileInputRoot({ disabled, children }: FileInputRootProps) {
+function FileInputRoot({ disabled, children, className }: FileInputRootProps) {
   return (
     <div
-      className={clsx("w-full max-w-xl", {
+      className={clsx("w-full", className, {
         "opacity-50 pointer-events-none": disabled,
       })}
     >
@@ -46,7 +47,11 @@ function FileInputDropzone({
 }: FileInputDropzoneProps) {
   return (
     <div
-      style={{ height, width }}
+      style={{
+        width, // Will always set width
+        height: !width ? height : undefined, // Will set fixed height if there's NO width
+        aspectRatio: height && width ? `${width} / ${height}` : undefined, // Will set height if there IS width
+      }}
       className={clsx(
         "relative focus-within:ring-2 rounded-md overflow-hidden max-w-full",
         {
