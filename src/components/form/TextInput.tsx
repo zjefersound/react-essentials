@@ -10,9 +10,13 @@ export interface TextInputInputProps
 export interface TextInputRootProps extends InputRootProps {}
 
 // eslint-disable-next-line react-refresh/only-export-components
-function TextInputRoot({ children, color, className }: TextInputRootProps) {
+function TextInputRoot({
+  children,
+  borderColor,
+  className,
+}: TextInputRootProps) {
   return (
-    <InputRoot className={clsx("w-full", className)} color={color}>
+    <InputRoot className={clsx("w-full", className)} borderColor={borderColor}>
       {children}
     </InputRoot>
   );

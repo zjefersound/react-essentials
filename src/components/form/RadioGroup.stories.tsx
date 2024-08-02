@@ -52,3 +52,15 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
+
+export const WithError: Story = {
+  args: {
+    borderColor: "danger"
+  }
+};
+
+export const WithSuccess: Story = {
+  args: {
+    borderColor: "success"
+  }
+};

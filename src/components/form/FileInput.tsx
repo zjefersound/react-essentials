@@ -32,14 +32,14 @@ FileInputRoot.displayName = "FileInput.Root";
 
 interface FileInputDropzoneProps {
   className?: string;
-  color?: "danger" | "success";
+  borderColor?: "danger" | "success";
   children?: ReactNode;
   height?: number;
   width?: number;
 }
 // eslint-disable-next-line react-refresh/only-export-components
 function FileInputDropzone({
-  color,
+  borderColor,
   className,
   height,
   width,
@@ -55,9 +55,9 @@ function FileInputDropzone({
       className={clsx(
         "relative focus-within:ring-2 rounded-md overflow-hidden max-w-full",
         {
-          "focus-within:ring-slate-500": !color,
-          "border-red-600 border": color === "danger",
-          "border-emerald-600 border": color === "success",
+          "focus-within:ring-slate-500": !borderColor,
+          "[&>*>*]:border-red-600": borderColor === "danger",
+          "[&>*>*]:border-emerald-600": borderColor === "success",
         },
         className
       )}

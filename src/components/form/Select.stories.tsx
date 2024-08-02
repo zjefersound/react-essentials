@@ -90,11 +90,11 @@ export const Custom: Story = {
 
 export const WithError: Story = {
   args: {
-    color: "danger"
+    borderColor: "danger"
   }
 };
 export const WithSuccess: Story = {
   args: {
-    color: "success"
+    borderColor: "success"
   }
 };

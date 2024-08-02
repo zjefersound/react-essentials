@@ -38,7 +38,7 @@ export const WithError: Story = {
   args: {
     error: "Username is already in use",
     children: [
-      <TextInput.Root key={1} color="danger">
+      <TextInput.Root key={1} borderColor="danger">
         <TextInput.Input value="my_username" onChange={fn()} />
       </TextInput.Root>,
     ],

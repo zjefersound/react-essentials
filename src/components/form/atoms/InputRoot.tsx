@@ -4,12 +4,12 @@ import React, { LegacyRef, ReactNode } from "react";
 export interface InputRootProps
   extends React.BaseHTMLAttributes<HTMLDivElement> {
   children: ReactNode;
-  color?: "danger" | "success";
+  borderColor?: "danger" | "success";
 }
 
 export const InputRoot = React.forwardRef(
   (
-    { children, className, color, ...restProps }: InputRootProps,
+    { children, className, borderColor, ...restProps }: InputRootProps,
     forwardedRef
   ) => {
     return (
@@ -27,9 +27,9 @@ export const InputRoot = React.forwardRef(
         placeholder:text-slate-500
       `,
           {
-            "ring-slate-300": !color,
-            "ring-red-600": color === "danger",
-            "ring-emerald-600": color === "success",
+            "ring-slate-300": !borderColor,
+            "ring-red-600": borderColor === "danger",
+            "ring-emerald-600": borderColor === "success",
           },
           className
         )}

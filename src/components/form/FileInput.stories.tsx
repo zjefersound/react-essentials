@@ -77,7 +77,7 @@ export const WithPreview: Story = {
 export const WithError: Story = {
   args: {
     children: [
-      <FileInput.Dropzone key={1} color="danger">
+      <FileInput.Dropzone key={1} borderColor="danger">
         <FileInput.Input name="photos" files={[]} onFilesChange={fn()} />
       </FileInput.Dropzone>,
     ],
@@ -87,7 +87,7 @@ export const WithError: Story = {
 export const WithSuccess: Story = {
   args: {
     children: [
-      <FileInput.Dropzone key={1} color="success">
+      <FileInput.Dropzone key={1} borderColor="success">
         <FileInput.Input name="photos" files={[]} onFilesChange={fn()} />
       </FileInput.Dropzone>,
     ],
