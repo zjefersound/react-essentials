@@ -12,11 +12,20 @@ export interface UploadedFile {
 }
 
 interface FileInputRootProps {
+  disabled?: boolean;
   children: ReactNode;
 }
 // eslint-disable-next-line react-refresh/only-export-components
-function FileInputRoot({ children }: FileInputRootProps) {
-  return <div className="w-full max-w-xl">{children}</div>;
+function FileInputRoot({ disabled, children }: FileInputRootProps) {
+  return (
+    <div
+      className={clsx("w-full max-w-xl", {
+        "opacity-50 pointer-events-none": disabled,
+      })}
+    >
+      {children}
+    </div>
+  );
 }
 FileInputRoot.displayName = "FileInput.Root";
 
@@ -116,8 +125,9 @@ function FileInputInput({
       <div
         className={clsx(
           "h-full w-full flex items-center justify-center p-4 rounded-md border-2 border-dashed transition-colors",
-          "hover:bg-slate-100",
           {
+            "hover:bg-slate-100": !disabled,
+            "cursor-not-allowed": disabled,
             "border-slate-500 bg-slate-200": isDragActive,
             "border-slate-300 bg-white": !isDragActive,
           }
@@ -132,7 +142,10 @@ function FileInputInput({
           name={name}
           type="file"
           multiple
-          className="w-full h-full left-0 top-0 absolute flex -z-10 outline-0"
+          className={clsx(
+            "w-full h-full left-0 top-0 absolute flex -z-10 outline-0",
+            { "opacity-0": disabled }
+          )}
           onChange={handleInputChange}
           aria-describedby="selected-files"
           required={required}
@@ -249,7 +262,10 @@ const FileInputFilePreview = forwardRef(
     }
     if (file.type.startsWith("video/")) {
       return (
-        <video className="w-full h-full absolute top-0 left-0 object-cover" controls>
+        <video
+          className="w-full h-full absolute top-0 left-0 object-cover"
+          controls
+        >
           <source src={file.dataURL} type={file.type} />
           Your browser does not support the video tag.
         </video>
@@ -257,7 +273,10 @@ const FileInputFilePreview = forwardRef(
     }
     if (file.type.startsWith("audio/")) {
       return (
-        <audio className="w-full h-full absolute top-0 left-0 object-cover" controls>
+        <audio
+          className="w-full h-full absolute top-0 left-0 object-cover"
+          controls
+        >
           <source src={file.dataURL} type={file.type} />
           Your browser does not support the audio element.
         </audio>

@@ -176,7 +176,7 @@ export function SmartField({
         );
       case "file":
         return (
-          <FileInput.Root>
+          <FileInput.Root disabled={disabled}>
             <FileInput.Dropzone className="h-[200px] w-[200px]">
               <FileInput.Input
                 name={config.id}
@@ -204,7 +204,7 @@ export function SmartField({
         );
       case "files":
         return (
-          <FileInput.Root>
+          <FileInput.Root disabled={disabled}>
             <FileInput.Dropzone>
               <FileInput.Input
                 name={config.id}
