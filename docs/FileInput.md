@@ -85,6 +85,13 @@ The `FileInput.Preview` component displays a preview of the selected file. It in
 </FileInput.Preview>
 ```
 
+## FileInput.FilePreview
+
+The `FileInput.FilePreview` component renders a preview of a file based on its type. It supports images, videos, and audio files, providing appropriate HTML elements for each type and a default view for unsupported file types.
+
+```tsx
+<FileInput.FilePreview file={file} />
+```
 ## Utility Functions
 
 ### printFileSize

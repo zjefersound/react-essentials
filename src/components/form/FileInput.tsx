@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { ReactNode, useState } from "react";
+import React, { forwardRef, LegacyRef, ReactNode, useState } from "react";
 import { MdOutlineAttachment, MdOutlineDeleteOutline } from "react-icons/md";
 import { printFileSize } from "../../utils/printFileSize";
 import { Slot } from "@radix-ui/react-slot";
@@ -98,10 +98,6 @@ function FileInputInput({
         );
         return false;
       }
-      if (allowedFileTypes && !allowedFileTypes.includes(file.type)) {
-        console.error(`File ${file.name} has an unsupported file type`);
-        return false;
-      }
       return true;
     });
 
@@ -141,6 +137,7 @@ function FileInputInput({
           aria-describedby="selected-files"
           required={required}
           disabled={disabled}
+          accept={allowedFileTypes?.join("|") ?? ""}
         />
         <p className="text-center text-slate-500">
           Drag & drop files here, or click to select files
@@ -233,10 +230,53 @@ function FileInputPreview({
 }
 FileInputPreview.displayName = "FileInput.Preview";
 
+interface FileInputFilePreviewProps {
+  file: UploadedFile;
+}
+
+// eslint-disable-next-line react-refresh/only-export-components
+const FileInputFilePreview = forwardRef(
+  ({ file }: FileInputFilePreviewProps, forwardedRef) => {
+    if (file.type.startsWith("image/")) {
+      return (
+        <img
+          className="w-full h-full absolute top-0 left-0 object-cover"
+          src={file.dataURL}
+          alt={file.name}
+          ref={forwardedRef as LegacyRef<HTMLImageElement>}
+        />
+      );
+    }
+    if (file.type.startsWith("video/")) {
+      return (
+        <video className="w-full h-full absolute top-0 left-0 object-cover" controls>
+          <source src={file.dataURL} type={file.type} />
+          Your browser does not support the video tag.
+        </video>
+      );
+    }
+    if (file.type.startsWith("audio/")) {
+      return (
+        <audio className="w-full h-full absolute top-0 left-0 object-cover" controls>
+          <source src={file.dataURL} type={file.type} />
+          Your browser does not support the audio element.
+        </audio>
+      );
+    }
+    return (
+      <div className="w-full h-full absolute top-0 left-0 object-cover flex items-center justify-center bg-slate-200 text-slate-500">
+        <span className="text-sm">File</span>
+      </div>
+    );
+  }
+);
+FileInputFilePreview.displayName = "FileInput.FilePreview";
+
 export const FileInput = {
   Root: FileInputRoot,
   Dropzone: FileInputDropzone,
   Input: FileInputInput,
   Preview: FileInputPreview,
+  FilePreview: FileInputFilePreview,
   List: FileInputList,
 };

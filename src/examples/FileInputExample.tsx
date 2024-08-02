@@ -24,7 +24,7 @@ export function FileInputExample() {
             visible={Boolean(profilePicture)}
             onRemove={() => setProfilePicture(null)}
           >
-            <img src={profilePicture?.dataURL} alt="profile picture" />
+            <FileInput.FilePreview file={profilePicture as UploadedFile} />
           </FileInput.Preview>
         </FileInput.Dropzone>
       </FileInput.Root>

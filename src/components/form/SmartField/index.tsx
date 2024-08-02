@@ -174,6 +174,34 @@ export function SmartField({
             )}
           </div>
         );
+      case "file":
+        return (
+          <FileInput.Root>
+            <FileInput.Dropzone className="h-[200px] w-[200px]">
+              <FileInput.Input
+                name={config.id}
+                required={config.required}
+                disabled={disabled}
+                files={value ? ([value] as UploadedFile[]) : []}
+                onFilesChange={(files) => onChangeValue(files[0], config.id)}
+                allowedFileTypes={
+                  "allowedFileTypes" in config
+                    ? config.allowedFileTypes
+                    : undefined
+                }
+                maxFileSize={
+                  "maxFileSize" in config ? config.maxFileSize : undefined
+                }
+              />
+              <FileInput.Preview
+                visible={Boolean(value)}
+                onRemove={() => onChangeValue(null, config.id)}
+              >
+                <FileInput.FilePreview file={value as UploadedFile} />
+              </FileInput.Preview>
+            </FileInput.Dropzone>
+          </FileInput.Root>
+        );
       case "files":
         return (
           <FileInput.Root>
@@ -184,6 +212,14 @@ export function SmartField({
                 disabled={disabled}
                 files={value as UploadedFile[]}
                 onFilesChange={(files) => onChangeValue(files, config.id)}
+                allowedFileTypes={
+                  "allowedFileTypes" in config
+                    ? config.allowedFileTypes
+                    : undefined
+                }
+                maxFileSize={
+                  "maxFileSize" in config ? config.maxFileSize : undefined
+                }
               />
             </FileInput.Dropzone>
             <FileInput.List

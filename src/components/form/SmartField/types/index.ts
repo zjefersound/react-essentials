@@ -1,5 +1,6 @@
 import { IconType } from "react-icons";
 import { ISelectOption } from "../../../../models/ISelectOption";
+import { UploadedFile } from "../../FileInput";
 
 export type FieldType =
   | "text"
@@ -12,6 +13,7 @@ export type FieldType =
   | "checkbox"
   | "select"
   | "textarea"
+  | "file"
   | "files"
   | "slider"
   | "color"
@@ -75,7 +77,7 @@ interface FieldConfigCurrency extends FieldConfigWithIcon {
 }
 
 interface FieldConfigFile extends BaseFieldConfig {
-  type: "files";
+  type: "file" | "files";
   maxFileSize?: number;
   allowedFileTypes?: string[];
 }
@@ -90,5 +92,14 @@ export type FieldConfig =
 
 // will be moved to Smart Form folders
 export interface FormFields {
-  [key: string]: string | number | boolean | File | FileList | string[];
+  [key: string]:
+    | string
+    | number
+    | boolean
+    | File
+    | FileList
+    | string[]
+    | null
+    | UploadedFile
+    | UploadedFile[];
 }
