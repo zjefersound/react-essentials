@@ -1,20 +1,12 @@
-import { IValidationError } from "../../models/IValidationReturn";
-
 interface Props {
-  /**
-   * Field id
-   */
-  id: string;
-  /**
-   * List of errors
-   */
-  errors: IValidationError[];
+  message?: string;
 }
-export function FieldError({ id, errors }: Props) {
-  const currentError = errors.find(error => error.field === id);
-  if(!currentError) return null;
+export function FieldError({ message }: Props) {
+  if (!message) return null;
 
   return (
-    <span className="text-sm text-red-600">{currentError.message}</span>
-  )
+    <span role="alert" className="text-sm text-red-600">
+      {message}
+    </span>
+  );
 }

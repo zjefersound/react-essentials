@@ -1,8 +1,8 @@
-import { IValidationError } from "../../../../models/IValidationReturn";
+import { FormValue } from ".";
 
 export interface IFieldHandlersProps {
   value: unknown;
-  onChangeValue: (value: unknown, id: string) => void;
-  errors: IValidationError[];
+  onChangeValue: (value: FormValue, id: string) => void;
+  error?: string;
   disabled?: boolean;
 }

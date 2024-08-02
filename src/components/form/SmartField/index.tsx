@@ -19,7 +19,7 @@ export function SmartField({
   value,
   onChangeValue,
   disabled,
-  errors,
+  error,
   config,
 }: SmartFieldProps) {
   const getField = () => {
@@ -265,7 +265,11 @@ export function SmartField({
     }
   };
   return (
-    <FormControl id={config.id} label={config.label} errors={errors}>
+    <FormControl
+      id={config.id}
+      label={config.label}
+      error={error}
+    >
       {getField()}
     </FormControl>
   );

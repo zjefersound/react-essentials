@@ -19,7 +19,6 @@ const meta = {
   },
   args: {
     id: "username",
-    errors: [],
     children: [
       <TextInput.Root key={1}>
         <TextInput.Input value="my_username" onChange={fn()}/>
@@ -32,17 +31,12 @@ const meta = {
 export default meta;
 type Story = StoryObj<FormControlProps>;
 
-export const Primary: Story = {
+export const Default: Story = {
   args: {},
 };
 export const WithError: Story = {
   args: {
-    errors: [
-      {
-        field: "username",
-        message: "Username must contain at least 3 characters",
-      },
-    ],
+    error: "Username is already in use",
     children: [
       <TextInput.Root key={1} color="danger">
         <TextInput.Input value="my_username" onChange={fn()} />
