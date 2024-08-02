@@ -80,6 +80,8 @@ interface FieldConfigFile extends BaseFieldConfig {
   type: "file" | "files";
   maxFileSize?: number;
   allowedFileTypes?: string[];
+  height?: number;
+  width?: number;
 }
 
 export type FieldConfig =

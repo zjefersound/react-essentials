@@ -102,7 +102,10 @@ const formFields: FieldConfig[] = [
     label: "Profile Picture",
     type: "file",
     id: "profilePicture",
-    allowedFileTypes: ["video/*"],
+    placeholder: "Drag & drop or select your profile picture",
+    allowedFileTypes: ["image/*"],
+    height: 200,
+    width: 200,
   },
   {
     label: "Photos",

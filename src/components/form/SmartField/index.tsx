@@ -177,9 +177,13 @@ export function SmartField({
       case "file":
         return (
           <FileInput.Root disabled={disabled}>
-            <FileInput.Dropzone className="h-[200px] w-[200px]">
+            <FileInput.Dropzone
+              height={"height" in config ? config.height : 200}
+              width={"width" in config ? config.width : undefined}
+            >
               <FileInput.Input
                 name={config.id}
+                placeholder={config.placeholder}
                 required={config.required}
                 disabled={disabled}
                 files={value ? ([value] as UploadedFile[]) : []}
@@ -205,9 +209,13 @@ export function SmartField({
       case "files":
         return (
           <FileInput.Root disabled={disabled}>
-            <FileInput.Dropzone>
+            <FileInput.Dropzone
+              height={"height" in config ? config.height : undefined}
+              width={"width" in config ? config.width : undefined}
+            >
               <FileInput.Input
                 name={config.id}
+                placeholder={config.placeholder}
                 required={config.required}
                 disabled={disabled}
                 files={value as UploadedFile[]}

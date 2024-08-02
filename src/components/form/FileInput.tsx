@@ -31,15 +31,29 @@ FileInputRoot.displayName = "FileInput.Root";
 
 interface FileInputDropzoneProps {
   className?: string;
+  color?: "danger" | "success";
   children?: ReactNode;
+  height?: number;
+  width?: number;
 }
 // eslint-disable-next-line react-refresh/only-export-components
-function FileInputDropzone({ className, children }: FileInputDropzoneProps) {
+function FileInputDropzone({
+  color,
+  className,
+  height,
+  width,
+  children,
+}: FileInputDropzoneProps) {
   return (
     <div
+      style={{ height, width }}
       className={clsx(
-        "relative focus-within:ring-2",
-        "focus-within:ring-slate-500",
+        "relative focus-within:ring-2 rounded-md overflow-hidden",
+        {
+          "focus-within:ring-slate-500": !color,
+          "border-red-600 border": color === "danger",
+          "border-emerald-600 border": color === "success",
+        },
         className
       )}
     >
@@ -51,6 +65,7 @@ FileInputDropzone.displayName = "FileInput.Dropzone";
 
 interface FileInputInputProps {
   name: string;
+  placeholder?: string;
   required?: boolean;
   disabled?: boolean;
   files: UploadedFile[];
@@ -61,6 +76,7 @@ interface FileInputInputProps {
 // eslint-disable-next-line react-refresh/only-export-components
 function FileInputInput({
   name,
+  placeholder,
   required,
   disabled,
   files,
@@ -153,7 +169,7 @@ function FileInputInput({
           accept={allowedFileTypes?.join("|") ?? ""}
         />
         <p className="text-center text-slate-500">
-          Drag & drop files here, or click to select files
+          {placeholder || "Drag & drop files here, or click to select files"}
         </p>
       </div>
     </label>
