@@ -69,3 +69,4 @@ Some components depend on global types
 
 - [Smart Field](/docs/SmartField.md)
 - [Toast](/docs/Toast.md)
+- [File Input](/docs/FileInput.md)

@@ -98,7 +98,21 @@ const formFields: FieldConfig[] = [
     id: "comments",
     placeholder: "Enter your comments",
   },
-  { label: "Profile Picture", type: "file", id: "profilePicture" },
+  {
+    label: "Profile Picture",
+    type: "file",
+    id: "profilePicture",
+    placeholder: "Drag & drop or select your profile picture",
+    allowedFileTypes: ["image/*"],
+    height: 200,
+    width: 200,
+  },
+  {
+    label: "Photos",
+    type: "files",
+    id: "photos",
+    allowedFileTypes: ["image/*"],
+  },
   { label: "Volume", type: "slider", id: "volume", step: 10 },
   { label: "Favorite Color", type: "color", id: "favcolor" },
   { label: "Meeting Time", type: "time", id: "meetingTime" },
@@ -127,8 +141,10 @@ const formFields: FieldConfig[] = [
 ];
 export function SmartFieldExamples() {
   const initialFormState = formFields.reduce((acc, field) => {
-    if (field.type === "checkboxList") {
+    if (field.type === "checkboxList" || field.type === "files") {
       acc[field.id] = [];
+    } else if (field.type === "file") {
+      acc[field.id] = null;
     } else if (field.type === "checkbox") {
       acc[field.id] = false;
     } else if (field.type === "currency") {

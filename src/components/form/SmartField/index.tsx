@@ -9,6 +9,7 @@ import { CheckLabel } from "../atoms/CheckLabel";
 import { RadioGroup } from "../RadioGroup";
 import { Slider } from "../Slider";
 import clsx from "clsx";
+import { FileInput, UploadedFile } from "../FileInput";
 
 interface SmartFieldProps extends IFieldHandlersProps {
   config: FieldConfig;
@@ -175,17 +176,65 @@ export function SmartField({
         );
       case "file":
         return (
-          <div>
-            <input
-              type="file"
-              name={config.id}
-              required={config.required}
-              onChange={(e) => {
-                onChangeValue(e.currentTarget.files, config.id);
-              }}
-              disabled={disabled}
+          <FileInput.Root disabled={disabled} className="max-w-xl">
+            <FileInput.Dropzone
+              height={"height" in config ? config.height : 200}
+              width={"width" in config ? config.width : undefined}
+            >
+              <FileInput.Input
+                name={config.id}
+                placeholder={config.placeholder}
+                required={config.required}
+                disabled={disabled}
+                files={value ? ([value] as UploadedFile[]) : []}
+                onFilesChange={(files) => onChangeValue(files[0], config.id)}
+                allowedFileTypes={
+                  "allowedFileTypes" in config
+                    ? config.allowedFileTypes
+                    : undefined
+                }
+                maxFileSize={
+                  "maxFileSize" in config ? config.maxFileSize : undefined
+                }
+              />
+              <FileInput.Preview
+                visible={Boolean(value)}
+                onRemove={() => onChangeValue(null, config.id)}
+              >
+                <FileInput.FilePreview file={value as UploadedFile} />
+              </FileInput.Preview>
+            </FileInput.Dropzone>
+          </FileInput.Root>
+        );
+      case "files":
+        return (
+          <FileInput.Root disabled={disabled} className="max-w-xl">
+            <FileInput.Dropzone
+              height={"height" in config ? config.height : undefined}
+              width={"width" in config ? config.width : undefined}
+            >
+              <FileInput.Input
+                name={config.id}
+                placeholder={config.placeholder}
+                required={config.required}
+                disabled={disabled}
+                files={value as UploadedFile[]}
+                onFilesChange={(files) => onChangeValue(files, config.id)}
+                allowedFileTypes={
+                  "allowedFileTypes" in config
+                    ? config.allowedFileTypes
+                    : undefined
+                }
+                maxFileSize={
+                  "maxFileSize" in config ? config.maxFileSize : undefined
+                }
+              />
+            </FileInput.Dropzone>
+            <FileInput.List
+              files={value as UploadedFile[]}
+              onFilesChange={(files) => onChangeValue(files, config.id)}
             />
-          </div>
+          </FileInput.Root>
         );
       case "slider":
         return (
