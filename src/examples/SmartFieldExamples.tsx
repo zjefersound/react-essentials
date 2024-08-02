@@ -114,6 +114,13 @@ const formFields: FieldConfig[] = [
     allowedFileTypes: ["image/*"],
   },
   { label: "Volume", type: "slider", id: "volume", step: 10 },
+  {
+    label: "Price between",
+    type: "range",
+    id: "priceBetween",
+    step: 20,
+    max: 1000,
+  },
   { label: "Favorite Color", type: "color", id: "favcolor" },
   { label: "Meeting Time", type: "time", id: "meetingTime" },
   {
@@ -143,6 +150,8 @@ export function SmartFieldExamples() {
   const initialFormState = formFields.reduce((acc, field) => {
     if (field.type === "checkboxList" || field.type === "files") {
       acc[field.id] = [];
+    } else if (field.type === "range") {
+      acc[field.id] = [0, 0];
     } else if (field.type === "file") {
       acc[field.id] = null;
     } else if (field.type === "checkbox") {

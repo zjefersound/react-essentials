@@ -248,7 +248,18 @@ export function SmartField({
             disabled={disabled}
           />
         );
-
+      case "range":
+        return (
+          <Slider
+            {...config}
+            id={config.id}
+            name={config.id}
+            value={value as number[]}
+            required={config.required}
+            onChange={(v) => onChangeValue(v, config.id)}
+            disabled={disabled}
+          />
+        );
       default:
         return null;
     }

@@ -16,6 +16,7 @@ export type FieldType =
   | "file"
   | "files"
   | "slider"
+  | "range"
   | "color"
   | "time"
   | "tel"
@@ -59,7 +60,7 @@ interface FieldConfigCheckbox extends BaseFieldConfig {
 }
 
 interface FieldConfigSlider extends BaseFieldConfig {
-  type: "slider";
+  type: "slider" | "range";
   orientation?: "vertical" | "horizontal";
   min?: number;
   max?: number;
@@ -98,9 +99,8 @@ export interface FormFields {
     | string
     | number
     | boolean
-    | File
-    | FileList
     | string[]
+    | number[]
     | null
     | UploadedFile
     | UploadedFile[];
