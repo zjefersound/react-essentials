@@ -99,7 +99,6 @@ export interface FormFields {
     | string
     | number
     | boolean
-    | FileList
     | string[]
     | number[]
     | null
