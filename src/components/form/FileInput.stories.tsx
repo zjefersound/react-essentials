@@ -18,7 +18,7 @@ const meta = {
   },
   args: {
     children: [
-      <FileInput.Dropzone>
+      <FileInput.Dropzone key={1}>
         <FileInput.Input name="photos" files={[]} onFilesChange={fn()} />
       </FileInput.Dropzone>,
     ],
@@ -35,10 +35,11 @@ export const Default: Story = {
 export const WithList: Story = {
   args: {
     children: [
-      <FileInput.Dropzone>
+      <FileInput.Dropzone key={1}>
         <FileInput.Input name="photos" files={[]} onFilesChange={fn()} />
       </FileInput.Dropzone>,
       <FileInput.List
+        key={2}
         files={[
           { dataURL: "", name: "file.jpg", size: 10330, type: "image/jpg" },
           { dataURL: "", name: "file 2.jpg", size: 79330, type: "image/jpg" },
@@ -55,7 +56,7 @@ export const WithList: Story = {
 export const WithPreview: Story = {
   args: {
     children: [
-      <FileInput.Dropzone height={200}>
+      <FileInput.Dropzone key={1} height={200}>
         <FileInput.Input name="photos" files={[]} onFilesChange={fn()} />
         <FileInput.Preview visible onRemove={fn()}>
           <FileInput.FilePreview
@@ -76,7 +77,7 @@ export const WithPreview: Story = {
 export const WithError: Story = {
   args: {
     children: [
-      <FileInput.Dropzone color="danger">
+      <FileInput.Dropzone key={1} color="danger">
         <FileInput.Input name="photos" files={[]} onFilesChange={fn()} />
       </FileInput.Dropzone>,
     ],
@@ -86,7 +87,7 @@ export const WithError: Story = {
 export const WithSuccess: Story = {
   args: {
     children: [
-      <FileInput.Dropzone color="success">
+      <FileInput.Dropzone key={1} color="success">
         <FileInput.Input name="photos" files={[]} onFilesChange={fn()} />
       </FileInput.Dropzone>,
     ],
