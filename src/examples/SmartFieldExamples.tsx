@@ -229,7 +229,7 @@ export function SmartFieldExamples() {
 
       <h2>Errors:</h2>
       <pre className="bg-slate-800 text-slate-400 whitespace-pre-wrap p-4 rounded-md">
-        const errors = {JSON.stringify(mockErrors, undefined, 2)}
+        const errors = {JSON.stringify(errors, undefined, 2)}
       </pre>
     </div>
   );
