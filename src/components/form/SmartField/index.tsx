@@ -238,6 +238,7 @@ export function SmartField({
               />
             </FileInput.Dropzone>
             <FileInput.List
+              disabled={disabled}
               files={value as UploadedFile[]}
               onFilesChange={(files) => onChangeValue(files, config.id)}
             />

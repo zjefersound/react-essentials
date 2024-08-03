@@ -184,12 +184,14 @@ FileInputInput.displayName = "FileInput.Input";
 
 interface FileInputListProps {
   files: UploadedFile[];
+  disabled?: boolean;
   onFilesChange: (files: UploadedFile[]) => void;
   onFileRemove?: (file: UploadedFile) => void;
 }
 // eslint-disable-next-line react-refresh/only-export-components
 function FileInputList({
   files,
+  disabled,
   onFilesChange,
   onFileRemove,
 }: FileInputListProps) {
@@ -215,6 +217,7 @@ function FileInputList({
             {printFileSize(file.size)}
           </span>
           <button
+            disabled={disabled}
             type="button"
             className={clsx(
               "size-6 rounded-full flex items-center justify-center",
