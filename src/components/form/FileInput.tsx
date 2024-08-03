@@ -237,12 +237,14 @@ FileInputList.displayName = "FileInput.List";
 
 interface FileInputPreviewProps {
   visible?: boolean;
+  disabled?: boolean;
   children: ReactNode;
   onRemove: () => void;
 }
 // eslint-disable-next-line react-refresh/only-export-components
 function FileInputPreview({
   visible = true,
+  disabled,
   onRemove,
   children,
 }: FileInputPreviewProps) {
@@ -253,6 +255,7 @@ function FileInputPreview({
         {children}
       </Slot>
       <button
+        disabled={disabled}
         onClick={onRemove}
         className={clsx(
           "h-full w-full absolute left-0 top-0 flex items-center justify-center opacity-0 hover:opacity-100 z-10",

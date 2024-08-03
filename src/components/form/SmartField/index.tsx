@@ -204,6 +204,7 @@ export function SmartField({
                 }
               />
               <FileInput.Preview
+                disabled={disabled}
                 visible={Boolean(value)}
                 onRemove={() => onChangeValue(null, config.id)}
               >
