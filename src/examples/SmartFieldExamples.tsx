@@ -191,15 +191,23 @@ export function SmartFieldExamples() {
   }, {} as FormFields);
   const [disabled, setDisabled] = useState(false);
   const [data, setData] = useState(initialFormState);
+  const [errors, setErrors] = useState<{ [k: string]: string }>({});
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const errors: any = mockErrors;
   return (
     <div className="p-8 space-y-4">
       <h1 className="font-bold">All Smart Fields</h1>
       <div className="flex border-b pb-4">
         <Checkbox checked={disabled} onChange={() => setDisabled(!disabled)} />
         <CheckLabel>Disabled all fields</CheckLabel>
+      </div>
+      <div className="flex border-b pb-4">
+        <Checkbox
+          checked={!!Object.entries(errors).length}
+          onChange={() =>
+            setErrors((e) => (Object.entries(e).length ? {} : mockErrors))
+          }
+        />
+        <CheckLabel>With errors</CheckLabel>
       </div>
       {formFields.map((field) => (
         <SmartField
