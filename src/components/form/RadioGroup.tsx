@@ -8,7 +8,7 @@ export interface RadioGroupRootProps
     RadioGroupPrimitive.RadioGroupProps,
     "onValueChange" | "onChange"
   > {
-  borderColor: "danger" | "success";
+  borderColor?: "danger" | "success";
   onChange: (value: string) => void;
 }
 // eslint-disable-next-line react-refresh/only-export-components
