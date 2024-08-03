@@ -58,3 +58,15 @@ export const Info: Story = {
     color: "info",
   },
 };
+
+export const WithError: Story = {
+  args: {
+    borderColor: "danger"
+  }
+};
+
+export const WithSuccess: Story = {
+  args: {
+    borderColor: "success"
+  }
+};

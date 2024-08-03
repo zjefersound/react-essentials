@@ -19,7 +19,7 @@ export function SmartField({
   value,
   onChangeValue,
   disabled,
-  errors,
+  error,
   config,
 }: SmartFieldProps) {
   const getField = () => {
@@ -34,7 +34,7 @@ export function SmartField({
       case "color":
       case "url":
         return (
-          <TextInput.Root>
+          <TextInput.Root borderColor={error ? "danger" : undefined}>
             {"Icon" in config && config.Icon && (
               <TextInput.Icon>
                 <config.Icon />
@@ -53,7 +53,7 @@ export function SmartField({
         );
       case "currency":
         return (
-          <TextInput.Root>
+          <TextInput.Root borderColor={error ? "danger" : undefined}>
             {"Icon" in config && config.Icon && (
               <TextInput.Icon>
                 <config.Icon />
@@ -71,6 +71,7 @@ export function SmartField({
       case "select":
         return (
           <Select.Root
+            borderColor={error ? "danger" : undefined}
             name={config.id}
             value={value as string}
             onChange={(value) => onChangeValue(value, config.id)}
@@ -90,6 +91,7 @@ export function SmartField({
       case "textarea":
         return (
           <Textarea
+            borderColor={error ? "danger" : undefined}
             name={config.id}
             value={value as string}
             placeholder={config.placeholder}
@@ -109,6 +111,7 @@ export function SmartField({
                     name={config.id}
                     value={option.value}
                     checked={(value as string[]).includes(option.value)}
+                    borderColor={error ? "danger" : undefined}
                     required={config.required}
                     onChange={() => {
                       const currentValues = value as string[];
@@ -142,6 +145,7 @@ export function SmartField({
             onChange={(value) => onChangeValue(value, config.id)}
             disabled={disabled}
             required={config.required}
+            borderColor={error ? "danger" : undefined}
           >
             {config.options &&
               config.options.map((option) => (
@@ -161,6 +165,7 @@ export function SmartField({
               required={config.required}
               onChange={() => onChangeValue(!value, config.id)}
               disabled={disabled}
+              borderColor={error ? "danger" : undefined}
             />
             {"checkLabel" in config && (
               <CheckLabel
@@ -180,6 +185,7 @@ export function SmartField({
             <FileInput.Dropzone
               height={"height" in config ? config.height : 200}
               width={"width" in config ? config.width : undefined}
+              borderColor={error ? "danger" : undefined}
             >
               <FileInput.Input
                 name={config.id}
@@ -198,6 +204,7 @@ export function SmartField({
                 }
               />
               <FileInput.Preview
+                disabled={disabled}
                 visible={Boolean(value)}
                 onRemove={() => onChangeValue(null, config.id)}
               >
@@ -212,6 +219,7 @@ export function SmartField({
             <FileInput.Dropzone
               height={"height" in config ? config.height : undefined}
               width={"width" in config ? config.width : undefined}
+              borderColor={error ? "danger" : undefined}
             >
               <FileInput.Input
                 name={config.id}
@@ -231,6 +239,7 @@ export function SmartField({
               />
             </FileInput.Dropzone>
             <FileInput.List
+              disabled={disabled}
               files={value as UploadedFile[]}
               onFilesChange={(files) => onChangeValue(files, config.id)}
             />
@@ -246,6 +255,7 @@ export function SmartField({
             required={config.required}
             onChange={(v) => onChangeValue(v[0], config.id)}
             disabled={disabled}
+            borderColor={error ? "danger" : undefined}
           />
         );
       case "range":
@@ -258,6 +268,7 @@ export function SmartField({
             required={config.required}
             onChange={(v) => onChangeValue(v, config.id)}
             disabled={disabled}
+            borderColor={error ? "danger" : undefined}
           />
         );
       default:
@@ -265,7 +276,7 @@ export function SmartField({
     }
   };
   return (
-    <FormControl id={config.id} label={config.label} errors={errors}>
+    <FormControl id={config.id} label={config.label} error={error}>
       {getField()}
     </FormControl>
   );

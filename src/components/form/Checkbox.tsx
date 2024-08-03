@@ -5,6 +5,7 @@ import { MdCheck } from "react-icons/md";
 
 export interface CheckboxProps extends CheckboxPrimitive.CheckboxProps {
   color?: SemanticColor;
+  borderColor?: "danger" | "success";
 }
 
 export function Checkbox({
@@ -12,16 +13,20 @@ export function Checkbox({
   onChange,
   className,
   color = "primary",
+  borderColor,
   ...props
 }: CheckboxProps) {
   return (
     <CheckboxPrimitive.Root
       checked={checked}
       className={clsx(
-        "size-6 rounded shrink-0 ring-1 ring-slate-300",
+        "size-6 rounded shrink-0 ring-1",
         className,
         {
           "opacity-50 cursor-not-allowed": props.disabled,
+          "ring-slate-300": !borderColor,
+          "ring-red-600": borderColor === "danger",
+          "ring-emerald-600": borderColor === "success",
         }
       )}
       onClick={onChange}

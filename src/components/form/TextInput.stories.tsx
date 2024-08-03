@@ -44,12 +44,12 @@ type Story = StoryObj<TextInputRootProps>;
 export const Default: Story = {};
 export const WithError: Story = {
   args: {
-    color: "danger"
+    borderColor: "danger"
   }
 };
 export const WithSuccess: Story = {
   args: {
-    color: "success"
+    borderColor: "success"
   }
 };
 export const WithoutIcon: Story = {

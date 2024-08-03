@@ -9,6 +9,7 @@ interface SliderProps
   height?: string;
   width?: string;
   required?: boolean;
+  borderColor?: "danger" | "success";
   onChange?: (value: number[]) => void;
 }
 
@@ -18,6 +19,7 @@ export function Slider({
   required,
   onChange,
   orientation = "horizontal",
+  borderColor,
   ...props
 }: SliderProps) {
   const numberOfThumbs = props.value?.length || props.defaultValue?.length || 1;
@@ -34,6 +36,8 @@ export function Slider({
         [`w-[${width}]`]: width,
         "w-80": !width && orientation === "horizontal",
         "opacity-50 [&>*>*]:cursor-not-allowed": props.disabled,
+        "[&>*>*]:ring-red-600 first:[&>*>*]:ring-1": borderColor === "danger",
+        "[&>*>*]:ring-emerald-600 first:[&>*>*]:ring-1": borderColor === "success",
       })}
       aria-required={required}
       orientation={orientation}

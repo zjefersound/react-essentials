@@ -19,7 +19,6 @@ type Story = StoryObj<typeof meta>;
 export const Text: Story = {
   name: "Type \"Text\"",
   args: {
-    errors: [],
     value: "",
     onChangeValue: fn(),
     config: {
@@ -35,7 +34,6 @@ export const Text: Story = {
 export const Password: Story = {
   name: "Type \"password\"",
   args: {
-    errors: [],
     value: "",
     onChangeValue: fn(),
     config: {
@@ -51,7 +49,6 @@ export const Password: Story = {
 export const Select: Story = {
   name: "As Select",
   args: {
-    errors: [],
     value: "",
     onChangeValue: fn(),
     config: {

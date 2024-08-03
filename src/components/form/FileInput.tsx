@@ -32,14 +32,14 @@ FileInputRoot.displayName = "FileInput.Root";
 
 interface FileInputDropzoneProps {
   className?: string;
-  color?: "danger" | "success";
+  borderColor?: "danger" | "success";
   children?: ReactNode;
   height?: number;
   width?: number;
 }
 // eslint-disable-next-line react-refresh/only-export-components
 function FileInputDropzone({
-  color,
+  borderColor,
   className,
   height,
   width,
@@ -55,9 +55,9 @@ function FileInputDropzone({
       className={clsx(
         "relative focus-within:ring-2 rounded-md overflow-hidden max-w-full",
         {
-          "focus-within:ring-slate-500": !color,
-          "border-red-600 border": color === "danger",
-          "border-emerald-600 border": color === "success",
+          "focus-within:ring-slate-500": !borderColor,
+          "[&>*>*]:border-red-600": borderColor === "danger",
+          "[&>*>*]:border-emerald-600": borderColor === "success",
         },
         className
       )}
@@ -184,12 +184,14 @@ FileInputInput.displayName = "FileInput.Input";
 
 interface FileInputListProps {
   files: UploadedFile[];
+  disabled?: boolean;
   onFilesChange: (files: UploadedFile[]) => void;
   onFileRemove?: (file: UploadedFile) => void;
 }
 // eslint-disable-next-line react-refresh/only-export-components
 function FileInputList({
   files,
+  disabled,
   onFilesChange,
   onFileRemove,
 }: FileInputListProps) {
@@ -215,6 +217,7 @@ function FileInputList({
             {printFileSize(file.size)}
           </span>
           <button
+            disabled={disabled}
             type="button"
             className={clsx(
               "size-6 rounded-full flex items-center justify-center",
@@ -234,12 +237,14 @@ FileInputList.displayName = "FileInput.List";
 
 interface FileInputPreviewProps {
   visible?: boolean;
+  disabled?: boolean;
   children: ReactNode;
   onRemove: () => void;
 }
 // eslint-disable-next-line react-refresh/only-export-components
 function FileInputPreview({
   visible = true,
+  disabled,
   onRemove,
   children,
 }: FileInputPreviewProps) {
@@ -250,6 +255,7 @@ function FileInputPreview({
         {children}
       </Slot>
       <button
+        disabled={disabled}
         onClick={onRemove}
         className={clsx(
           "h-full w-full absolute left-0 top-0 flex items-center justify-center opacity-0 hover:opacity-100 z-10",

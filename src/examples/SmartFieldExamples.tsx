@@ -5,6 +5,28 @@ import { MdMailOutline } from "react-icons/md";
 import { Checkbox } from "../components/form/Checkbox";
 import { CheckLabel } from "../components/form/atoms/CheckLabel";
 
+const mockErrors = {
+  name: "Name is required",
+  amount: "Amount is required",
+  email: "Email is invalid",
+  password: "Password must be at least 6 characters",
+  age: "You must be at least 18 years old",
+  birthday: "Birthday is required",
+  gender: "Gender is required",
+  subscribe: "Subscription is required",
+  country: "Country is required",
+  comments: "Comments are required",
+  profilePicture: "Profile picture is required",
+  photos: "Photos are required",
+  volume: "Volume is required",
+  priceBetween: "Price range is required",
+  favcolor: "Favorite color is required",
+  meetingTime: "Meeting time is required",
+  phone: "Phone number is invalid",
+  website: "Website URL is invalid",
+  hobbies: "At least one hobby must be selected",
+};
+
 const formFields: FieldConfig[] = [
   {
     label: "Name",
@@ -160,6 +182,8 @@ export function SmartFieldExamples() {
       acc[field.id] = 0;
     } else if (field.type === "slider") {
       acc[field.id] = 0;
+    } else if (field.type === "color") {
+      acc[field.id] = "#000000";
     } else {
       acc[field.id] = "";
     }
@@ -167,6 +191,8 @@ export function SmartFieldExamples() {
   }, {} as FormFields);
   const [disabled, setDisabled] = useState(false);
   const [data, setData] = useState(initialFormState);
+  const [errors, setErrors] = useState<{ [k: string]: string }>({});
+
   return (
     <div className="p-8 space-y-4">
       <h1 className="font-bold">All Smart Fields</h1>
@@ -174,12 +200,20 @@ export function SmartFieldExamples() {
         <Checkbox checked={disabled} onChange={() => setDisabled(!disabled)} />
         <CheckLabel>Disabled all fields</CheckLabel>
       </div>
+      <div className="flex border-b pb-4">
+        <Checkbox
+          checked={!!Object.entries(errors).length}
+          onChange={() =>
+            setErrors((e) => (Object.entries(e).length ? {} : mockErrors))
+          }
+        />
+        <CheckLabel>With errors</CheckLabel>
+      </div>
       {formFields.map((field) => (
         <SmartField
           key={field.id}
-          errors={[]}
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          onChangeValue={(value: any, id) => {
+          error={errors[field.id]}
+          onChangeValue={(value, id) => {
             setData((d) => ({ ...d, [id]: value }));
           }}
           value={data[field.id]}
@@ -191,6 +225,11 @@ export function SmartFieldExamples() {
       <h2>Data:</h2>
       <pre className="bg-slate-800 text-slate-400 whitespace-pre-wrap p-4 rounded-md">
         const data = {JSON.stringify(data, undefined, 2)}
+      </pre>
+
+      <h2>Errors:</h2>
+      <pre className="bg-slate-800 text-slate-400 whitespace-pre-wrap p-4 rounded-md">
+        const errors = {JSON.stringify(errors, undefined, 2)}
       </pre>
     </div>
   );

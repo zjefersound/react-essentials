@@ -94,14 +94,16 @@ export type FieldConfig =
   | BaseFieldConfig;
 
 // will be moved to Smart Form folders
+export type FormValue =
+  | string
+  | number
+  | boolean
+  | string[]
+  | number[]
+  | null
+  | UploadedFile
+  | UploadedFile[];
+
 export interface FormFields {
-  [key: string]:
-    | string
-    | number
-    | boolean
-    | string[]
-    | number[]
-    | null
-    | UploadedFile
-    | UploadedFile[];
+  [key: string]: FormValue;
 }

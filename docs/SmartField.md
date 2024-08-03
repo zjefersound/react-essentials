@@ -57,7 +57,7 @@ These are the required props used to manage the form, including setting data, di
 interface IFieldHandlersProps {
   value: unknown;
   onChangeValue: (value: unknown, id: string) => void;
-  errors: IValidationError[];
+  error?: string;
   disabled?: boolean;
 }
 ```

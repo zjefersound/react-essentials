@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { IValidationError } from "../../models/IValidationReturn";
 import { FieldError } from "./FieldError";
 import { Label } from "./Label";
 
@@ -21,19 +20,25 @@ export interface FormControlProps {
    */
   children: ReactNode;
   /**
-   * List of errors
+   * Error message
    */
-  errors: IValidationError[];
+  error?: string;
 }
-export function FormControl({ id, label, optional, errors, children }: FormControlProps) {
+export function FormControl({
+  id,
+  label,
+  optional,
+  error,
+  children,
+}: FormControlProps) {
   return (
     <div>
       <Label id={id}>
         {label}:{" "}
-        {optional && <span className="text-sm text-slate-500">(opcional)</span>}
+        {optional && <span className="text-sm text-slate-500">(optional)</span>}
       </Label>
       {children}
-      <FieldError id={id} errors={errors} />
+      <FieldError message={error} />
     </div>
   );
 }

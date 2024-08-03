@@ -64,3 +64,15 @@ export const TripleRange: Story = {
     defaultValue: [1, 3, 5],
   },
 };
+
+export const WithError: Story = {
+  args: {
+    borderColor: "danger"
+  }
+};
+
+export const WithSuccess: Story = {
+  args: {
+    borderColor: "success"
+  }
+};

@@ -10,16 +10,13 @@ const meta = {
   tags: ["autodocs"],
   argTypes: {},
   args: {
-    id: "username",
-    errors: [{ field: "username", message: "Username must contain at least 3 characters"}]
+    message: "Username must contain at least 3 characters",
   },
 } satisfies Meta<typeof FieldError>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
-  args: {
-  },
+export const Default: Story = {
+  args: {},
 };
-
