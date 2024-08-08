@@ -1,5 +1,9 @@
+import { useEffect, useState } from "react";
 import { FieldConfig, FormFields } from "../components/form/SmartField/types";
 import { SmartForm } from "../components/form/SmartForm";
+import { ISelectOption } from "../models/ISelectOption";
+import { useToast } from "../hooks/useToast";
+import { ToastProvider } from "../contexts/ToastContext";
 
 const formFields: FieldConfig[] = [
   {
@@ -20,6 +24,12 @@ const formFields: FieldConfig[] = [
     placeholder: "Enter the amount",
     currency: "USD",
     locale: "en-US",
+    validations: [
+      {
+        rule: (value) => value > 0,
+        message: "Amount should be more than zero",
+      },
+    ],
   },
   { label: "Birthday", type: "date", id: "birthday", required: true },
   {
@@ -52,23 +62,69 @@ const formFields: FieldConfig[] = [
     required: true,
   },
 ];
-export function SmartFormExample() {
+
+async function getCountries() {
+  await new Promise((resolve) => setTimeout(resolve, 800));
+  return Promise.resolve({
+    data: [
+      { label: "Brazil", value: "BR" },
+      { label: "United States", value: "US" },
+    ],
+  });
+}
+
+async function successfulRequest(payload: FormFields) {
+  await new Promise((resolve) => setTimeout(resolve, 800));
+  return Promise.resolve({
+    data: {
+      message: "Form was submitted successfully",
+      payload,
+    },
+  });
+}
+function SmartFormUnderToastExample() {
+  const { launchToast } = useToast();
+  const [loading, setLoading] = useState(true);
+  const [countryOptions, setCountryOptions] = useState<ISelectOption[]>([]);
+  const handleSubmit = async (payload: FormFields) => {
+    return successfulRequest(payload).then((response) => {
+      launchToast({
+        title: "Success",
+        description: response.data.message,
+        color: "success",
+      });
+    });
+  };
+
+  useEffect(() => {
+    getCountries()
+      .then((response) => setCountryOptions(response.data))
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  const formOptions = {
+    country: countryOptions,
+  };
   return (
     <div className="p-8 space-y-4">
       <h1 className="font-bold">Smart Form</h1>
       <SmartForm
         submitText="Send form"
-        onSubmit={async (payload: FormFields) => {
-          console.log(payload);
-        }}
+        onSubmit={handleSubmit}
         fields={formFields}
-        formOptions={{
-          country: [
-            { label: "Brazil", value: "BR" },
-            { label: "United States", value: "US" },
-          ],
-        }}
+        formOptions={formOptions}
+        loading={loading}
       />
     </div>
+  );
+}
+
+export function SmartFormExample() {
+  return (
+    <ToastProvider>
+      <SmartFormUnderToastExample />
+    </ToastProvider>
   );
 }

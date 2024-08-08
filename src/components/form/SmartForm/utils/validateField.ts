@@ -1,7 +1,7 @@
 import { FieldConfig, FormValue } from "../../SmartField/types";
 
 export const validateField = (field: FieldConfig, value: FormValue): string | null => {
-  if (field.required && !value) {
+  if (field.required && !value && value !== 0) {
     return `${field.label} is required`;
   }
   if (field.validations) {
