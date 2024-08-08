@@ -30,6 +30,7 @@ export function SmartForm({
       validator: getValidator(fields),
     });
 
+  const disabled = formLoading || loading;
   return (
     <form className="space-y-4" onSubmit={handleSubmit}>
       {fields.map((field) => (
@@ -38,7 +39,7 @@ export function SmartForm({
           error={errors[field.id]}
           onChangeValue={handleChangeValue}
           value={data[field.id]}
-          disabled={formLoading || loading}
+          disabled={disabled}
           config={{
             ...field,
             required: false,
@@ -48,8 +49,8 @@ export function SmartForm({
           }}
         />
       ))}
-      <Button className="w-full justify-center">
-        {loading && <Loading size="sm" className="mr-2"/>}
+      <Button className="w-full justify-center" disabled={disabled}>
+        {loading && <Loading size="sm" className="mr-2" />}
         {submitText}
       </Button>
     </form>
