@@ -1,4 +1,4 @@
-import { FieldConfig } from "../components/form/SmartField/types";
+import { FieldConfig, FormFields } from "../components/form/SmartField/types";
 import { SmartForm } from "../components/form/SmartForm";
 
 const formFields: FieldConfig[] = [
@@ -31,6 +31,7 @@ const formFields: FieldConfig[] = [
       { value: "female", label: "Female" },
       { value: "other", label: "Other" },
     ],
+    required: true,
   },
   {
     label: "Country",
@@ -38,6 +39,7 @@ const formFields: FieldConfig[] = [
     placeholder: "Select the country",
     id: "country",
     fetchOptionsFromApi: true,
+    required: true,
   },
   {
     label: "Profile Picture",
@@ -47,13 +49,26 @@ const formFields: FieldConfig[] = [
     allowedFileTypes: ["image/*"],
     height: 200,
     width: 200,
+    required: true,
   },
 ];
 export function SmartFormExample() {
   return (
     <div className="p-8 space-y-4">
       <h1 className="font-bold">Smart Form</h1>
-      <SmartForm fields={formFields} />
+      <SmartForm
+        submitText="Send form"
+        onSubmit={async (payload: FormFields) => {
+          console.log(payload);
+        }}
+        fields={formFields}
+        formOptions={{
+          country: [
+            { label: "Brazil", value: "BR" },
+            { label: "United States", value: "US" },
+          ],
+        }}
+      />
     </div>
   );
 }

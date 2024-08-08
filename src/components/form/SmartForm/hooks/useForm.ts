@@ -8,7 +8,7 @@ import { FormFields, FormValue } from "../../SmartField/types";
 interface Props {
   initialState: FormFields;
   dataValue?: FormFields;
-  onSubmit: (data: FormFields) => Promise<any>;
+  onSubmit: (data: FormFields) => Promise<unknown>;
   validator: (data: FormFields) => IValidationReturn;
 }
 export function useForm<T = unknown>({
@@ -22,7 +22,7 @@ export function useForm<T = unknown>({
   const [errors, setErrors] = useState<FormErrors<T>>({});
 
   const handleChangeValue = (value: FormValue, id: string) => {
-    setData((d: any) => ({ ...d, [id]: value }));
+    setData((d: FormFields) => ({ ...d, [id]: value }));
     const newErrors = { ...errors };
     delete newErrors[id as keyof T];
     setErrors(newErrors);
