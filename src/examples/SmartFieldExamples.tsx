@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { SmartField } from "../components/form/SmartField";
-import { FieldConfig, FormFields } from "../components/form/SmartField/types";
+import { FieldConfig } from "../components/form/SmartField/types";
 import { MdMailOutline } from "react-icons/md";
 import { Checkbox } from "../components/form/Checkbox";
 import { CheckLabel } from "../components/form/atoms/CheckLabel";
+import { getInitialFormState } from "../components/form/SmartForm/utils/getInitialFormState";
 
 const mockErrors = {
   name: "Name is required",
@@ -169,26 +170,7 @@ const formFields: FieldConfig[] = [
   },
 ];
 export function SmartFieldExamples() {
-  const initialFormState = formFields.reduce((acc, field) => {
-    if (field.type === "checkboxList" || field.type === "files") {
-      acc[field.id] = [];
-    } else if (field.type === "range") {
-      acc[field.id] = [0, 0];
-    } else if (field.type === "file") {
-      acc[field.id] = null;
-    } else if (field.type === "checkbox") {
-      acc[field.id] = false;
-    } else if (field.type === "currency") {
-      acc[field.id] = 0;
-    } else if (field.type === "slider") {
-      acc[field.id] = 0;
-    } else if (field.type === "color") {
-      acc[field.id] = "#000000";
-    } else {
-      acc[field.id] = "";
-    }
-    return acc;
-  }, {} as FormFields);
+  const initialFormState = getInitialFormState(formFields);
   const [disabled, setDisabled] = useState(false);
   const [data, setData] = useState(initialFormState);
   const [errors, setErrors] = useState<{ [k: string]: string }>({});
