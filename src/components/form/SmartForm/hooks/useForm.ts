@@ -2,7 +2,7 @@ import {
   FormErrors,
   IValidationReturn,
 } from "../../../../models/IValidationReturn";
-import { FormEvent, useState } from "react";
+import { FormEvent, useCallback, useState } from "react";
 import { FormFields, FormValue } from "../../SmartField/types";
 
 interface Props {
@@ -32,12 +32,14 @@ export function useForm<T = unknown>({
   const [data, setData] = useState(dataValue || initialState);
   const [errors, setErrors] = useState<FormErrors<T>>({});
 
-  const handleChangeValue = (value: FormValue, id: string) => {
+  const handleChangeValue = useCallback((value: FormValue, id: string) => {
     setData((d: FormFields) => ({ ...d, [id]: value }));
-    const newErrors = { ...errors };
-    delete newErrors[id as keyof T];
-    setErrors(newErrors);
-  };
+    setErrors((prevErrors) => {
+      const newErrors = { ...prevErrors };
+      delete newErrors[id as keyof T];
+      return newErrors;
+    });
+  }, []);
 
   const handleSubmit = (e?: FormEvent) => {
     e?.preventDefault();

@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { ISelectOption } from "../../../models/ISelectOption";
 import { Button } from "../../ui/Button";
 import { Loading } from "../../ui/Loading";
@@ -15,6 +16,7 @@ export interface SmartFormProps {
   fields: FieldConfig[];
 }
 
+const MemoizedSmartField = memo(SmartField);
 export function SmartForm({
   submitText,
   onSubmit,
@@ -34,19 +36,14 @@ export function SmartForm({
   return (
     <form className="space-y-4" onSubmit={handleSubmit}>
       {fields.map((field) => (
-        <SmartField
+        <MemoizedSmartField
           key={field.id}
           error={errors[field.id]}
           onChangeValue={handleChangeValue}
           value={data[field.id]}
           disabled={disabled}
-          config={{
-            ...field,
-            required: false,
-            options: field.fetchOptionsFromApi
-              ? formOptions[field.id]
-              : field.options,
-          }}
+          options={formOptions[field.id]}
+          config={field}
         />
       ))}
       <Button className="w-full justify-center" disabled={disabled}>
