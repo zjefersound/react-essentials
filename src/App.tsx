@@ -1,5 +1,7 @@
+import { SmartFormExample } from "./examples/SmartFormExample";
+
 function App() {
-  return <h1>Hello Dev</h1>;
+  return <SmartFormExample />;
 }
 
 export default App;

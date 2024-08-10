@@ -16,21 +16,6 @@ const formFields: FieldConfig[] = [
       { rule: (value) => value.trim() !== "", message: "Name is required" },
     ],
   },
-  {
-    label: "Amount",
-    type: "currency",
-    id: "amount",
-    required: true,
-    placeholder: "Enter the amount",
-    currency: "USD",
-    locale: "en-US",
-    validations: [
-      {
-        rule: (value) => value > 0,
-        message: "Amount should be more than zero",
-      },
-    ],
-  },
   { label: "Birthday", type: "date", id: "birthday", required: true },
   {
     label: "Gender",
@@ -109,9 +94,9 @@ function SmartFormUnderToastExample() {
   };
   return (
     <div className="p-8 space-y-4">
-      <h1 className="font-bold">Smart Form</h1>
+      <h1 className="font-bold">Profile Form</h1>
       <SmartForm
-        submitText="Send form"
+        submitText="Save profile"
         onSubmit={handleSubmit}
         fields={formFields}
         formOptions={formOptions}
