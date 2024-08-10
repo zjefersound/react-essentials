@@ -51,3 +51,34 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {},
 };
+
+export const WithOptions: Story = {
+  args: {
+    fields: [
+      {
+        id: "state",
+        label: "State",
+        placeholder: "Select a state",
+        required: true,
+        type: "select",
+        fetchOptionsFromApi: true,
+      },
+      {
+        id: "city",
+        label: "City",
+        placeholder: "Select a city",
+        required: true,
+        type: "select",
+        fetchOptionsFromApi: true,
+      },
+    ],
+    submitText: "Save address",
+    formOptions: {
+      state: [
+        { value: "SP", label: "São Paulo" },
+        { value: "SC", label: "Santa Catarina" },
+        { value: "RJ", label: "Rio de Janeiro" },
+      ],
+    },
+  },
+};
