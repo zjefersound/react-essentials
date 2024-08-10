@@ -1,84 +1,91 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { SmartForm } from ".";
-import { fn } from "@storybook/test";
+import { Meta, StoryObj } from "@storybook/react";
+import { SmartForm, SmartFormProps } from ".";
+import { useSmartForm } from "./hooks/useSmartForm";
+import { FieldConfig } from "../SmartField/types";
 
-const meta = {
+const meta: Meta<typeof SmartForm> = {
   title: "Form/SmartForm",
   component: SmartForm,
   parameters: {
-    layout: "centered",
+    controls: { expanded: true },
   },
-  tags: ["autodocs"],
-  argTypes: {},
-  args: {
-    loading: false,
-    fields: [
-      {
-        label: "Email",
-        type: "email",
-        id: "email",
-        required: true,
-        placeholder: "Enter your email",
-        validations: [
-          {
-            rule: (value) => /\S+@\S+\.\S+/.test(value),
-            message: "Email is invalid",
-          },
-        ],
-      },
-      {
-        label: "Password",
-        type: "password",
-        id: "password",
-        required: true,
-        placeholder: "Enter your password",
-        validations: [
-          {
-            rule: (value) => value.length >= 6,
-            message: "Password must be at least 6 characters",
-          },
-        ],
-      },
-    ],
-    onSubmit: fn(() => new Promise((resolve) => setTimeout(resolve, 300))),
-    submitText: "Log in",
-  },
-} satisfies Meta<typeof SmartForm>;
-
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const Default: Story = {
-  args: {},
 };
 
-export const WithOptions: Story = {
+export default meta;
+
+const mockOnSubmit = async (data: any) => {
+  console.log("Form submitted:", data);
+  return new Promise((resolve) => setTimeout(resolve, 1000));
+};
+
+const fields: FieldConfig[] = [
+  { id: "name", label: "Name", placeholder: "Enter your name", type: "text", required: true },
+  { id: "email", label: "Email", placeholder: "Enter your email", type: "email", required: true },
+];
+
+export const SimpleForm: StoryObj<SmartFormProps> = {
+  render: (args) => {
+    const formState = useSmartForm({
+      onSubmit: mockOnSubmit,
+      fields,
+    });
+    return <SmartForm {...args} formState={formState} />;
+  },
   args: {
-    fields: [
-      {
-        id: "state",
-        label: "State",
-        placeholder: "Select a state",
-        required: true,
-        type: "select",
-        fetchOptionsFromApi: true,
-      },
-      {
-        id: "city",
-        label: "City",
-        placeholder: "Select a city",
-        required: true,
-        type: "select",
-        fetchOptionsFromApi: true,
-      },
-    ],
-    submitText: "Save address",
-    formOptions: {
-      state: [
-        { value: "SP", label: "São Paulo" },
-        { value: "SC", label: "Santa Catarina" },
-        { value: "RJ", label: "Rio de Janeiro" },
+    submitText: "Submit",
+  },
+};
+
+export const LoadingState: StoryObj<SmartFormProps> = {
+  render: (args) => {
+    const formState = useSmartForm({
+      onSubmit: mockOnSubmit,
+      fields,
+      loading: true,
+    });
+    return <SmartForm {...args} formState={formState} />;
+  },
+  args: {
+    submitText: "Submit",
+  },
+};
+
+export const WithValidationErrors: StoryObj<SmartFormProps> = {
+  render: (args) => {
+    const formState = useSmartForm({
+      onSubmit: mockOnSubmit,
+      fields: [
+        {
+          id: "name",
+          label: "Name",
+          placeholder: "Enter your name",
+          type: "text",
+          required: true,
+          validations: [
+            {
+              rule: (value: string) => value.length >= 3,
+              message: "Name must be at least 3 characters long",
+            },
+          ],
+        },
+        {
+          id: "email",
+          label: "Email",
+          placeholder: "Enter your email",
+          type: "email",
+          required: true,
+          validations: [
+            {
+              rule: (value: string) => /\S+@\S+\.\S+/.test(value),
+              message: "Invalid email address",
+            },
+          ],
+        },
       ],
-    },
+    });
+    return <SmartForm {...args} formState={formState} />;
+  },
+  args: {
+    submitText: "Submit",
   },
 };

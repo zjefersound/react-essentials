@@ -3,24 +3,20 @@ import { ISelectOption } from "../../../models/ISelectOption";
 import { Button } from "../../ui/Button";
 import { Loading } from "../../ui/Loading";
 import { SmartField } from "../SmartField";
-import { FieldConfig, FormFields } from "../SmartField/types";
-import { useSmartForm } from "./hooks/useSmartForm";
+import { FormFields } from "../SmartField/types";
+import { UseSmartFormReturn } from "./hooks/useSmartForm";
 
 export interface SmartFormProps {
   submitText: string;
-  loading?: boolean;
   formOptions?: { [key: string]: ISelectOption[] };
-  onSubmit: (payload: FormFields) => Promise<unknown>;
-  fields: FieldConfig[];
+  formState: UseSmartFormReturn<FormFields>;
 }
 
 const MemoizedSmartField = memo(SmartField);
 export function SmartForm({
   submitText,
-  onSubmit,
-  fields,
-  loading: formLoading,
   formOptions = {},
+  formState,
 }: SmartFormProps) {
   const {
     data,
@@ -30,7 +26,7 @@ export function SmartForm({
     handleSubmit,
     serializedFields,
     disabled,
-  } = useSmartForm({ onSubmit, fields, loading: formLoading });
+  } = formState;
   return (
     <form className="space-y-4" onSubmit={handleSubmit}>
       {serializedFields.map((field) => (

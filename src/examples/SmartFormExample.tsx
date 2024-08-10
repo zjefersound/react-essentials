@@ -4,6 +4,7 @@ import { SmartForm } from "../components/form/SmartForm";
 import { ISelectOption } from "../models/ISelectOption";
 import { useToast } from "../hooks/useToast";
 import { ToastProvider } from "../contexts/ToastContext";
+import { useSmartForm } from "../components/form/SmartForm/hooks/useSmartForm";
 
 const formFields: FieldConfig[] = [
   {
@@ -80,6 +81,11 @@ function SmartFormUnderToastExample() {
       });
     });
   };
+  const profileFormState = useSmartForm({
+    onSubmit: handleSubmit,
+    fields: formFields,
+    loading,
+  });
 
   useEffect(() => {
     getCountries()
@@ -97,10 +103,8 @@ function SmartFormUnderToastExample() {
       <h1 className="font-bold">Profile Form</h1>
       <SmartForm
         submitText="Save profile"
-        onSubmit={handleSubmit}
-        fields={formFields}
         formOptions={formOptions}
-        loading={loading}
+        formState={profileFormState}
       />
     </div>
   );
