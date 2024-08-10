@@ -11,6 +11,17 @@ interface Props {
   onSubmit: (data: FormFields) => Promise<unknown>;
   validator: (data: FormFields) => IValidationReturn;
 }
+
+export interface UseFormReturn<T> {
+  data: T;
+  setData: (data: T) => void;
+  loading: boolean;
+  setLoading: (loading: boolean) => void;
+  handleChangeValue: (value: FormValue, id: string) => void;
+  handleSubmit: (e?: FormEvent) => void;
+  errors: FormErrors<T>;
+  setErrors: (errors: FormErrors) => void;
+}
 export function useForm<T = unknown>({
   initialState,
   dataValue,
@@ -53,5 +64,5 @@ export function useForm<T = unknown>({
     handleSubmit,
     errors,
     setErrors,
-  };
+  } as UseFormReturn<T>;
 }
