@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import { ISelectOption } from "../../../models/ISelectOption";
 import { Button } from "../../ui/Button";
 import { Loading } from "../../ui/Loading";
@@ -32,10 +32,17 @@ export function SmartForm({
       validator: getValidator(fields),
     });
 
-  const disabled = formLoading || loading;
+  const disabled = useMemo(
+    () => formLoading || loading,
+    [formLoading, loading]
+  );
+  const serializedFields = useMemo(
+    () => fields.map((config) => ({ ...config, required: false })),
+    [fields]
+  );
   return (
     <form className="space-y-4" onSubmit={handleSubmit}>
-      {fields.map((field) => (
+      {serializedFields.map((field) => (
         <MemoizedSmartField
           key={field.id}
           error={errors[field.id]}
