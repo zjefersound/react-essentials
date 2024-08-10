@@ -1,12 +1,10 @@
-import { memo, useMemo } from "react";
+import { memo } from "react";
 import { ISelectOption } from "../../../models/ISelectOption";
 import { Button } from "../../ui/Button";
 import { Loading } from "../../ui/Loading";
 import { SmartField } from "../SmartField";
 import { FieldConfig, FormFields } from "../SmartField/types";
-import { useForm } from "./hooks/useForm";
-import { getInitialFormState } from "./utils/getInitialFormState";
-import { getValidator } from "./utils/getValidator";
+import { useSmartForm } from "./hooks/useSmartForm";
 
 export interface SmartFormProps {
   submitText: string;
@@ -24,22 +22,15 @@ export function SmartForm({
   loading: formLoading,
   formOptions = {},
 }: SmartFormProps) {
-  const initialState = getInitialFormState(fields);
-  const { data, errors, loading, handleChangeValue, handleSubmit } =
-    useForm<FormFields>({
-      initialState,
-      onSubmit,
-      validator: getValidator(fields),
-    });
-
-  const disabled = useMemo(
-    () => formLoading || loading,
-    [formLoading, loading]
-  );
-  const serializedFields = useMemo(
-    () => fields.map((config) => ({ ...config, required: false })),
-    [fields]
-  );
+  const {
+    data,
+    errors,
+    loading,
+    handleChangeValue,
+    handleSubmit,
+    serializedFields,
+    disabled,
+  } = useSmartForm({ onSubmit, fields, loading: formLoading });
   return (
     <form className="space-y-4" onSubmit={handleSubmit}>
       {serializedFields.map((field) => (
