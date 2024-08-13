@@ -4,17 +4,9 @@ The `SmartForm` component is a dynamic form builder that integrates with the `us
 
 ## Get started
 
-1. Install the required dependencies:
-
-```bash
-npm install <dependencies>
-```
-2. Install `SmartField` following the tutorial
-3. Copy the everything from [`SmartForm`](../src/components/form/SmartForm/) (Including `hooks` and `utils`)
-
-## Component
-
-Description...
+1. Install `SmartField` following the [`tutorial here`](./SmartField.md).
+2. Copy the everything from [`SmartForm`](../src/components/form/SmartForm/) (Including `hooks` and `utils`)
+3. Copy example from [`SmartFormExample.tsx`](../src/examples/SmartFormExample.tsx)
 
 ## Utility Functions
 
