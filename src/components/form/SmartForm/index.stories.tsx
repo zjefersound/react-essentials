@@ -13,7 +13,7 @@ const meta: Meta<typeof SmartForm> = {
 
 export default meta;
 
-const mockOnSubmit = async (data: any) => {
+const mockOnSubmit = async (data: unknown) => {
   console.log("Form submitted:", data);
   return new Promise((resolve) => setTimeout(resolve, 1000));
 };
