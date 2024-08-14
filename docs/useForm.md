@@ -25,7 +25,7 @@ The useForm hook returns an object with several properties that facilitate form 
 
 - `handleSubmit(e?: FormEvent)`: void: Manages form submission, including validation and calling onSubmit if valid.
 
-- `errors`: FormErrors<T>: Contains validation errors for each form field.
+- `errors`: `FormErrors<T>`: Contains validation errors for each form field.
 
 - `setErrors(errors: FormErrors): void`: Manually sets form errors.
 
