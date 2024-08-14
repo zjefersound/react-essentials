@@ -1,4 +1,4 @@
-import { FormFields } from "../components/form/SmartField/types";
+import { FormFields } from "../components/form/SmartForm/types";
 
 export type FormErrors<T = FormFields> = {
   [K in keyof T]?: string;

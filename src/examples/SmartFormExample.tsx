@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { FieldConfig, FormFields } from "../components/form/SmartField/types";
+import { FieldConfig } from "../components/form/SmartField/types";
 import { SmartForm } from "../components/form/SmartForm";
 import { ISelectOption } from "../models/ISelectOption";
 import { useToast } from "../hooks/useToast";
 import { ToastProvider } from "../contexts/ToastContext";
 import { useSmartForm } from "../components/form/SmartForm/hooks/useSmartForm";
+import { FormFields } from "../components/form/SmartForm/types";
 
 const formFields: FieldConfig[] = [
   {

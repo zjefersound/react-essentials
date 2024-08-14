@@ -1,8 +1,9 @@
 import { useMemo } from "react";
-import { FieldConfig, FormFields } from "../../SmartField/types";
+import { FieldConfig } from "../../SmartField/types";
 import { getInitialFormState } from "../utils/getInitialFormState";
 import { getValidator } from "../utils/getValidator";
 import { useForm, UseFormReturn } from "./useForm";
+import { FormFields } from "../types";
 
 export interface UseSmartFormProps {
   loading?: boolean;

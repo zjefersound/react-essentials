@@ -1,5 +1,6 @@
 import { FormErrors } from "../../../../models/IValidationReturn";
-import { FieldConfig, FormFields } from "../../SmartField/types";
+import { FieldConfig } from "../../SmartField/types";
+import { FormFields } from "../types";
 import { validateField } from "./validateField";
 
 export function getValidator(fields: FieldConfig[]) {

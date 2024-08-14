@@ -1,4 +1,5 @@
-import { FieldConfig, FormValue } from "../../SmartField/types";
+import { FieldConfig } from "../../SmartField/types";
+import { FormValue } from "../types";
 
 export const validateField = (field: FieldConfig, value: FormValue): string | null => {
   if (field.required && !value && value !== 0) {

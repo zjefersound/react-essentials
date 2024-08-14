@@ -3,7 +3,7 @@ import { ISelectOption } from "../../../models/ISelectOption";
 import { Button } from "../../ui/Button";
 import { Loading } from "../../ui/Loading";
 import { SmartField } from "../SmartField";
-import { FormFields } from "../SmartField/types";
+import { FormFields } from "../SmartForm/types";
 import { UseSmartFormReturn } from "./hooks/useSmartForm";
 
 export interface SmartFormProps {

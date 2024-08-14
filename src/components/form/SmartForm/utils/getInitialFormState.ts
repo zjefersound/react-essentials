@@ -1,4 +1,5 @@
-import { FieldConfig, FormFields } from "../../SmartField/types";
+import { FieldConfig } from "../../SmartField/types";
+import { FormFields } from "../types";
 
 export function getInitialFormState(fields: FieldConfig[]) {
   const initialFormState = fields.reduce((state, field) => {

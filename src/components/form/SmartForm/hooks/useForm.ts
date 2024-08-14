@@ -3,7 +3,7 @@ import {
   IValidationReturn,
 } from "../../../../models/IValidationReturn";
 import { FormEvent, useCallback, useState } from "react";
-import { FormFields, FormValue } from "../../SmartField/types";
+import { FormFields, FormValue } from "../../SmartForm/types";
 
 interface Props {
   initialState: FormFields;
