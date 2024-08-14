@@ -21,6 +21,7 @@ export function SmartField({
   disabled,
   error,
   config,
+  options,
 }: SmartFieldProps) {
   const getField = () => {
     switch (config.type) {
@@ -81,7 +82,7 @@ export function SmartField({
             <Select.Item value={null as unknown as string}>
               {config.placeholder}
             </Select.Item>
-            {config.options?.map((item) => (
+            {(options || config.options)?.map((item) => (
               <Select.Item value={item.value} key={item.value}>
                 {item.label}
               </Select.Item>
@@ -103,8 +104,7 @@ export function SmartField({
       case "checkboxList":
         return (
           <div className="space-y-2">
-            {config.options &&
-              config.options.map((option, index) => (
+            {(options || config.options)?.map((option, index) => (
                 <div key={index}>
                   <Checkbox
                     id={option.value}
@@ -147,8 +147,7 @@ export function SmartField({
             required={config.required}
             borderColor={error ? "danger" : undefined}
           >
-            {config.options &&
-              config.options.map((option) => (
+            {(options || config.options)?.map((option) => (
                 <RadioGroup.Item key={option.value} value={option.value}>
                   {option.label}
                 </RadioGroup.Item>

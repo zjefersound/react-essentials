@@ -1,6 +1,5 @@
 import { IconType } from "react-icons";
 import { ISelectOption } from "../../../../models/ISelectOption";
-import { UploadedFile } from "../../FileInput";
 
 export type FieldType =
   | "text"
@@ -93,17 +92,3 @@ export type FieldConfig =
   | FieldConfigWithIcon
   | BaseFieldConfig;
 
-// will be moved to Smart Form folders
-export type FormValue =
-  | string
-  | number
-  | boolean
-  | string[]
-  | number[]
-  | null
-  | UploadedFile
-  | UploadedFile[];
-
-export interface FormFields {
-  [key: string]: FormValue;
-}
