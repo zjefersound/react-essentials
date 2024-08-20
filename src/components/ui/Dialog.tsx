@@ -45,7 +45,7 @@ export function DialogContent({
         className={clsx(
           "z-50 data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[85vh] translate-x-[-50%] translate-y-[-50%] rounded-md focus:outline-none",
           "bg-white p-4 shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px]",
-          "w-full",
+          "w-[calc(100%-24px)]",
           {
             "max-w-[450px]": size === "sm",
             "max-w-[650px]": size === "md",
