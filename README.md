@@ -67,6 +67,7 @@ Some components depend on global types
 
 ## 📚 Important Docs:
 
+- [Dialog](/docs/Dialog.md)
 - [File Input](/docs/FileInput.md)
 - [Smart Field](/docs/SmartField.md)
 - [Smart Form](/docs/SmartForm.md)
