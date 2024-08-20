@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { AiOutlineClose } from "react-icons/ai";
-import { Text } from "./Text";
 import clsx from "clsx";
 
 interface DialogRootProps {
@@ -56,8 +55,11 @@ export function DialogContent({
         <DialogPrimitive.Title className="text-slate-900 mb-2 font-bold">
           {title}
         </DialogPrimitive.Title>
-        <DialogPrimitive.Description className="mb-4">
-          <Text>{description}</Text>
+        <DialogPrimitive.Description
+          className="mb-4 text-slate-500 text-sm font-sans"
+          asChild
+        >
+          {description}
         </DialogPrimitive.Description>
         {children}
         <DialogPrimitive.Close asChild>
