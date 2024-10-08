@@ -48,6 +48,38 @@ const formFields: FieldConfig[] = [
     width: 200,
     required: true,
   },
+  {
+    id: "password",
+    label: "Password",
+    type: "password",
+    placeholder: "Enter your password",
+    validations: [
+      {
+        rule: (value) => value.trim() !== "",
+        message: "Password is required",
+      },
+      {
+        rule: (value) => value.length >= 6,
+        message: "Password must be at least 6 characters long",
+      },
+    ],
+  },
+  {
+    id: "confirmPassword",
+    label: "Confirm password",
+    type: "password",
+    placeholder: "Enter your password",
+    validations: [
+      {
+        rule: (value) => value.trim() !== "",
+        message: "Password confirmation is required",
+      },
+      {
+        rule: (value, form) => value === form.password,
+        message: "Passwords do not match",
+      },
+    ],
+  },
 ];
 
 async function getCountries() {
