@@ -255,6 +255,7 @@ function FileInputPreview({
         {children}
       </Slot>
       <button
+        type="button"
         disabled={disabled}
         onClick={onRemove}
         className={clsx(
