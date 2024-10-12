@@ -21,7 +21,8 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "types": ["vitest/globals", "vite/client"],
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": ["src", "setupTests.ts"]
 }
