@@ -1,0 +1,38 @@
+name: SonarCloud Scan
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  sonarcloud:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # Install Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20.15.1'
+
+      # Install dependencies
+      - run: npm install
+
+      # Run tests with coverage
+      - run: npm run test:coverage
+
+      # Run SonarScanner
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectKey=<your_sonarcloud_project_key>
+            -Dsonar.organization=<your_organization_key>
