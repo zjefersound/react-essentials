@@ -1,5 +1,23 @@
 import { render, fireEvent } from "@testing-library/react";
+import { axe } from "vitest-axe";
 import { TextInput } from "./TextInput";
+
+// Smoke test for the accessibility testing setup added in #36 (vitest-axe +
+// setupTests.ts). Confirms `toHaveNoViolations` is wired up correctly.
+// Component-specific a11y assertions live alongside each component's own
+// test suite (see #39, #40, #41).
+describe("Accessibility setup smoke test", () => {
+  it("has no violations for a labelled TextInput", async () => {
+    const { container } = render(
+      <TextInput.Root>
+        <TextInput.Input aria-label="Example input" />
+      </TextInput.Root>
+    );
+
+    expect(await axe(container)).toHaveNoViolations();
+  });
+});
+
 describe("TextInput.Root", () => {
   it("renders children correctly", () => {
     const { getByText } = render(
