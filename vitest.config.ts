@@ -9,15 +9,26 @@ export default defineConfig({
     globals: true,
     coverage: {
       provider: 'v8',
-      reporter: ['text', 'lcov'],
+      reporter: ['text', 'lcov', 'html', 'json-summary'],
       reportsDirectory: './coverage',
       exclude: [
         '**/*.stories.{ts,tsx}',
         'src/examples/**',
         'src/models/**',
         '**/*.d.ts',
-        '**/*.config.{ts,js}',
+        '**/*.config.{ts,js,cjs}',
+        '.eslintrc.cjs',
+        '.storybook/**',
+        'dist/**',
+        'coverage/**',
+        'src/main.tsx',
       ],
+      thresholds: {
+        lines: 85,
+        functions: 85,
+        branches: 85,
+        statements: 85,
+      },
     },
   },
 });
