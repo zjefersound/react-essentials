@@ -13,6 +13,7 @@ export default defineConfig({
       reportsDirectory: './coverage',
       exclude: [
         '**/*.stories.{ts,tsx}',
+        '**/*.test.{ts,tsx}',
         'src/examples/**',
         'src/models/**',
         '**/*.d.ts',
