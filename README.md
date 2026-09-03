@@ -74,3 +74,7 @@ Some components depend on global types
 - [Toast](/docs/Toast.md)
 - [useForm](/docs/useForm.md)
 - [useSmartForm](/docs/useSmartForm.md)
+
+## 📄 License
+
+Released under the [MIT License](/LICENSE).
