@@ -1,0 +1,84 @@
+Feature: ship react-essentials as an npm package + a copy-in CLI
+Problem
+
+Reusing these components in another project today means manually copying files and chasing down their imports. We want two artifacts backed by one registry (the dependency tree):
+
+A published npm package — import { Button } from "react-essentials" works normally.
+A CLI — react-essentials add SmartField copies that component as source into the consumer's repo and installs exactly the deps it uses.
+MVP scope — only these commands
+Command	Behavior
+react-essentials -h / --help	list commands and options
+react-essentials init	install base deps only (tailwindcss, postcss, autoprefixer, clsx) + write a config file; no component-specific deps
+react-essentials list	print every registry item (components, hooks, utils) grouped by type
+react-essentials add <name...>	copy the item(s) + their internal deps into the project, then install their npm deps
+
+Out of scope: templates, presets, --diff/--view, url/local-path sources, monorepo scaffolding, RTL, theming flags, update/remove.
+
+Deliverable 1 — the package
+package.json: remove "private": true; add name, version, license (MIT, done), exports, module, types, files: ["dist"], bin: { "react-essentials": "dist/cli.js" }.
+Distribution build (Vite library mode or tsup) → ESM + .d.ts in dist/, excluding *.stories.tsx, *.test.tsx, src/examples/**.
+react / react-dom → peerDependencies. @radix-ui/*, clsx, react-icons → dependencies (decide + document; not peer).
+Create the missing barrels: src/index.ts re-exporting components/**, hooks/**, utils/**, models/**, contexts/** (sub-barrel per folder is fine). There is no barrel today.
+Verify by npm pack + installing the tarball into a scratch Vite app.
+Deliverable 2 — the registry (dependency tree)
+
+Generated, not hand-written. Add scripts/build-registry.ts that scans src/, parses each file's imports, and emits registry.json (bundled in the package).
+
+Item shape
+{
+  "name": "SmartField",
+  "type": "component",          // component | hook | util | model | context
+  "files": [
+    "components/form/SmartField/index.tsx",
+    "components/form/SmartField/types/index.ts",
+    "components/form/SmartField/types/IFieldHandlersProps.ts"
+  ],
+  "registryDependencies": [     // other registry items, by name (transitive)
+    "FormControl", "TextInput", "Select", "Textarea", "Checkbox",
+    "RadioGroup", "Slider", "FileInput", "CheckLabel", "ISelectOption"
+  ],
+  "dependencies": { "clsx": "^2.1.1", "react-icons": "^5.2.1" },
+  "peerDependencies": { "react": ">=18" }
+}
+Derivation rules
+files = the item's own directory (or single file), minus *.test.* / *.stories.*.
+Relative imports (../TextInput, ../../models/semanticColor, ../atoms/CheckLabel) → resolve to the registry item owning that file → registryDependencies.
+Bare imports (clsx, react-icons, @radix-ui/react-select) → dependencies, version pinned from the root package.json.
+react / react-dom → peerDependencies, never installed by add.
+Imports that appear only in test/story files must not leak (vitest-axe, @storybook/*, @testing-library/*).
+Naming
+
+Unique names. Component = exported name (TextInput, SmartForm); hook = hook name (useSmartForm, useForm, useToast); util = function name (toCurrency); model = type name (ISelectOption). list groups by type.
+
+Command details
+
+init
+
+Detect package manager from lockfile (npm/pnpm/yarn/bun); install base deps only.
+If tailwind.config.* / postcss.config.* are absent, write minimal ones; if present, print the content globs to add and leave the file untouched.
+Write react-essentials.json in the consumer root:
+{ "componentsDir": "src/components/react-essentials", "hooksDir": "src/hooks", "utilsDir": "src/utils" }
+Idempotent.
+
+list — read bundled registry.json; output type name per line; --json flag for scripting.
+
+add <name...>
+
+Resolve the transitive registryDependencies closure.
+Copy each files entry into the target dir from react-essentials.json, preserving sub-paths under its category.
+Rewrite cross-import paths in copied files to the consumer's layout (relative rewrite is enough for MVP).
+Install the union of dependencies with the detected package manager; check peerDependencies and warn if missing.
+Flags: -y/--yes, -o/--overwrite (default: skip existing files with a notice), -c/--cwd <dir>, --dry-run (print the file + dep plan, write nothing).
+Print a summary: files written / skipped, deps installed.
+Acceptance criteria
+npm pack; in a fresh Vite React+TS app, npm i ../react-essentials.tgz.
+npx react-essentials init → base deps + config present, app still builds.
+npx react-essentials list → shows SmartField, useSmartForm, toCurrency, …
+npx react-essentials add SmartField → creates SmartField/** plus FormControl, TextInput, … and models/ISelectOption.ts; installs clsx + react-icons; installs no @storybook/*; tsc passes; component renders.
+Re-running add skips existing files; --dry-run writes nothing.
+import { Button } from "react-essentials" also works.
+Decisions to state in the PR
+Package name/scope; @radix-ui/* as dependencies vs peerDependencies.
+CLI deps: commander + prompts (confirm).
+Default copy location and whether to rewrite imports to an @/ alias.
+CLI lives in this repo (src/cli, shipped via bin) vs a separate package — MVP: same package.

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "myprovider": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "DataAnnotation",
+      "options": {
+        "baseURL": "https://app-llmproxy.dataannotation.tech/api/llm_proxy/openai/v1"
+      },
+      "models": {
+        "claude-celery": {
+          "id": "celery",
+          "name": "celery"
+        },
+        "claude-carrot": {
+          "id": "carrot",
+          "name": "carrot"
+        }
+      }
+    }
+  }
+}
