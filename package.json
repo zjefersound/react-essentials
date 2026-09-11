@@ -1,18 +1,42 @@
 {
   "name": "react-essentials",
-  "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "license": "MIT",
+  "description": "A React component library with form and UI components",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "registry.json",
+    "src"
+  ],
+  "bin": {
+    "react-essentials": "./dist/cli.js"
+  },
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "npm run build:registry && npm run build:lib && npm run build:types",
+    "build:lib": "vite build",
+    "build:types": "tsc -p tsconfig.build.json",
+    "build:registry": "tsx scripts/build-registry.ts",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "vitest",
     "test:coverage": "vitest --coverage"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.0",
@@ -24,8 +48,8 @@
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-toast": "^1.2.1",
     "clsx": "^2.1.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "commander": "^12.1.0",
+    "prompts": "^2.4.2",
     "react-icons": "^5.2.1"
   },
   "devDependencies": {
@@ -42,6 +66,7 @@
     "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.5.2",
     "@types/jest": "^29.5.13",
+    "@types/prompts": "^2.4.9",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.13.1",
@@ -53,10 +78,12 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
     "eslint-plugin-storybook": "^0.8.0",
+    "glob": "^7.2.3",
     "jsdom": "^25.0.1",
     "postcss": "^8.4.39",
     "storybook": "^8.2.9",
     "tailwindcss": "^3.4.4",
+    "tsx": "^4.23.13",
     "typescript": "^5.2.2",
     "vite": "^5.3.1",
     "vitest": "^2.1.2",

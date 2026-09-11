@@ -1,0 +1,489 @@
+[
+  {
+    "name": "Alert",
+    "type": "component",
+    "files": [
+      "components/ui/Alert.tsx"
+    ],
+    "registryDependencies": [],
+    "dependencies": {
+      "clsx": "^2.1.1"
+    },
+    "peerDependencies": {
+      "react": ">=18"
+    }
+  },
+  {
+    "name": "Avatar",
+    "type": "component",
+    "files": [
+      "components/ui/Avatar.tsx"
+    ],
+    "registryDependencies": [
+      "getInitials"
+    ],
+    "dependencies": {
+      "@radix-ui/react-avatar": "^1.1.0",
+      "clsx": "^2.1.1"
+    },
+    "peerDependencies": {}
+  },
+  {
+    "name": "Button",
+    "type": "component",
+    "files": [
+      "components/ui/Button.tsx"
+    ],
+    "registryDependencies": [
+      "semanticColor"
+    ],
+    "dependencies": {
+      "clsx": "^2.1.1"
+    },
+    "peerDependencies": {
+      "react": ">=18"
+    }
+  },
+  {
+    "name": "Checkbox",
+    "type": "component",
+    "files": [
+      "components/form/Checkbox.tsx"
+    ],
+    "registryDependencies": [
+      "semanticColor"
+    ],
+    "dependencies": {
+      "@radix-ui/react-checkbox": "^1.1.1",
+      "clsx": "^2.1.1"
+    },
+    "peerDependencies": {}
+  },
+  {
+    "name": "CheckLabel",
+    "type": "component",
+    "files": [
+      "components/form/atoms/CheckLabel.tsx"
+    ],
+    "registryDependencies": [],
+    "dependencies": {},
+    "peerDependencies": {}
+  },
+  {
+    "name": "CurrencyInput",
+    "type": "component",
+    "files": [
+      "components/form/CurrencyInput.tsx"
+    ],
+    "registryDependencies": [
+      "toCurrency"
+    ],
+    "dependencies": {},
+    "peerDependencies": {
+      "react": ">=18"
+    }
+  },
+  {
+    "name": "Dialog",
+    "type": "component",
+    "files": [
+      "components/ui/Dialog.tsx"
+    ],
+    "registryDependencies": [],
+    "dependencies": {
+      "@radix-ui/react-dialog": "^1.1.1",
+      "clsx": "^2.1.1"
+    },
+    "peerDependencies": {
+      "react": ">=18"
+    }
+  },
+  {
+    "name": "FieldError",
+    "type": "component",
+    "files": [
+      "components/form/FieldError.tsx"
+    ],
+    "registryDependencies": [],
+    "dependencies": {},
+    "peerDependencies": {}
+  },
+  {
+    "name": "FileInput",
+    "type": "component",
+    "files": [
+      "components/form/FileInput.tsx"
+    ],
+    "registryDependencies": [
+      "printFileSize"
+    ],
+    "dependencies": {
+      "clsx": "^2.1.1",
+      "@radix-ui/react-slot": "^1.1.0"
+    },
+    "peerDependencies": {
+      "react": ">=18"
+    }
+  },
+  {
+    "name": "FormControl",
+    "type": "component",
+    "files": [
+      "components/form/FormControl.tsx"
+    ],
+    "registryDependencies": [
+      "FieldError",
+      "Label"
+    ],
+    "dependencies": {},
+    "peerDependencies": {
+      "react": ">=18"
+    }
+  },
+  {
+    "name": "getInitials",
+    "type": "util",
+    "files": [
+      "utils/getInitials.ts"
+    ],
+    "registryDependencies": [],
+    "dependencies": {},
+    "peerDependencies": {}
+  },
+  {
+    "name": "Heading",
+    "type": "component",
+    "files": [
+      "components/ui/Heading.tsx"
+    ],
+    "registryDependencies": [],
+    "dependencies": {
+      "clsx": "^2.1.1",
+      "@radix-ui/react-slot": "^1.1.0"
+    },
+    "peerDependencies": {
+      "react": ">=18"
+    }
+  },
+  {
+    "name": "InputRoot",
+    "type": "component",
+    "files": [
+      "components/form/atoms/InputRoot.tsx"
+    ],
+    "registryDependencies": [],
+    "dependencies": {
+      "clsx": "^2.1.1"
+    },
+    "peerDependencies": {
+      "react": ">=18"
+    }
+  },
+  {
+    "name": "ISelectOption",
+    "type": "model",
+    "files": [
+      "models/ISelectOption.ts"
+    ],
+    "registryDependencies": [],
+    "dependencies": {},
+    "peerDependencies": {
+      "react": ">=18"
+    }
+  },
+  {
+    "name": "IValidationReturn",
+    "type": "model",
+    "files": [
+      "models/IValidationReturn.ts"
+    ],
+    "registryDependencies": [
+      "SmartForm"
+    ],
+    "dependencies": {},
+    "peerDependencies": {}
+  },
+  {
+    "name": "Label",
+    "type": "component",
+    "files": [
+      "components/form/Label.tsx"
+    ],
+    "registryDependencies": [],
+    "dependencies": {},
+    "peerDependencies": {
+      "react": ">=18"
+    }
+  },
+  {
+    "name": "Loading",
+    "type": "component",
+    "files": [
+      "components/ui/Loading.tsx"
+    ],
+    "registryDependencies": [],
+    "dependencies": {
+      "clsx": "^2.1.1"
+    },
+    "peerDependencies": {}
+  },
+  {
+    "name": "printFileSize",
+    "type": "util",
+    "files": [
+      "utils/printFileSize.ts"
+    ],
+    "registryDependencies": [],
+    "dependencies": {},
+    "peerDependencies": {}
+  },
+  {
+    "name": "RadioGroup",
+    "type": "component",
+    "files": [
+      "components/form/RadioGroup.tsx"
+    ],
+    "registryDependencies": [
+      "CheckLabel"
+    ],
+    "dependencies": {
+      "@radix-ui/react-radio-group": "^1.2.0",
+      "clsx": "^2.1.1"
+    },
+    "peerDependencies": {
+      "react": ">=18"
+    }
+  },
+  {
+    "name": "Select",
+    "type": "component",
+    "files": [
+      "components/form/Select.tsx"
+    ],
+    "registryDependencies": [
+      "InputRoot"
+    ],
+    "dependencies": {
+      "@radix-ui/react-select": "^2.1.1",
+      "clsx": "^2.1.1"
+    },
+    "peerDependencies": {
+      "react": ">=18"
+    }
+  },
+  {
+    "name": "semanticColor",
+    "type": "model",
+    "files": [
+      "models/semanticColor.ts"
+    ],
+    "registryDependencies": [],
+    "dependencies": {},
+    "peerDependencies": {}
+  },
+  {
+    "name": "Skeleton",
+    "type": "component",
+    "files": [
+      "components/ui/Skeleton.tsx"
+    ],
+    "registryDependencies": [],
+    "dependencies": {},
+    "peerDependencies": {
+      "react": ">=18"
+    }
+  },
+  {
+    "name": "Slider",
+    "type": "component",
+    "files": [
+      "components/form/Slider.tsx"
+    ],
+    "registryDependencies": [],
+    "dependencies": {
+      "@radix-ui/react-slider": "^1.2.0",
+      "clsx": "^2.1.1"
+    },
+    "peerDependencies": {}
+  },
+  {
+    "name": "SmartField",
+    "type": "component",
+    "files": [
+      "components/form/SmartField/index.tsx",
+      "components/form/SmartField/types/IFieldHandlersProps.ts",
+      "components/form/SmartField/types/index.ts"
+    ],
+    "registryDependencies": [
+      "CheckLabel",
+      "Checkbox",
+      "FileInput",
+      "FormControl",
+      "ISelectOption",
+      "RadioGroup",
+      "Select",
+      "Slider",
+      "SmartForm",
+      "TextInput",
+      "Textarea"
+    ],
+    "dependencies": {
+      "clsx": "^2.1.1",
+      "react-icons": "^5.2.1"
+    },
+    "peerDependencies": {}
+  },
+  {
+    "name": "SmartForm",
+    "type": "component",
+    "files": [
+      "components/form/SmartForm/index.tsx",
+      "components/form/SmartForm/types/index.ts",
+      "components/form/SmartForm/utils/getInitialFormState.ts",
+      "components/form/SmartForm/utils/getValidator.ts",
+      "components/form/SmartForm/utils/validateField.ts"
+    ],
+    "registryDependencies": [
+      "Button",
+      "FileInput",
+      "ISelectOption",
+      "IValidationReturn",
+      "Loading",
+      "SmartField",
+      "useSmartForm"
+    ],
+    "dependencies": {},
+    "peerDependencies": {
+      "react": ">=18"
+    }
+  },
+  {
+    "name": "Text",
+    "type": "component",
+    "files": [
+      "components/ui/Text.tsx"
+    ],
+    "registryDependencies": [],
+    "dependencies": {
+      "clsx": "^2.1.1",
+      "@radix-ui/react-slot": "^1.1.0"
+    },
+    "peerDependencies": {
+      "react": ">=18"
+    }
+  },
+  {
+    "name": "Textarea",
+    "type": "component",
+    "files": [
+      "components/form/Textarea.tsx"
+    ],
+    "registryDependencies": [
+      "InputRoot"
+    ],
+    "dependencies": {},
+    "peerDependencies": {
+      "react": ">=18"
+    }
+  },
+  {
+    "name": "TextInput",
+    "type": "component",
+    "files": [
+      "components/form/TextInput.tsx"
+    ],
+    "registryDependencies": [
+      "CurrencyInput",
+      "InputRoot"
+    ],
+    "dependencies": {
+      "@radix-ui/react-slot": "^1.1.0",
+      "clsx": "^2.1.1"
+    },
+    "peerDependencies": {
+      "react": ">=18"
+    }
+  },
+  {
+    "name": "Toast",
+    "type": "component",
+    "files": [
+      "components/ui/Toast.tsx"
+    ],
+    "registryDependencies": [],
+    "dependencies": {
+      "@radix-ui/react-toast": "^1.2.1",
+      "clsx": "^2.1.1"
+    },
+    "peerDependencies": {}
+  },
+  {
+    "name": "ToastContext",
+    "type": "context",
+    "files": [
+      "contexts/ToastContext.tsx"
+    ],
+    "registryDependencies": [
+      "Toast"
+    ],
+    "dependencies": {},
+    "peerDependencies": {
+      "react": ">=18"
+    }
+  },
+  {
+    "name": "toCurrency",
+    "type": "util",
+    "files": [
+      "utils/toCurrency.ts"
+    ],
+    "registryDependencies": [],
+    "dependencies": {},
+    "peerDependencies": {}
+  },
+  {
+    "name": "useForm",
+    "type": "hook",
+    "files": [
+      "components/form/SmartForm/hooks/useForm.ts"
+    ],
+    "registryDependencies": [
+      "IValidationReturn",
+      "SmartForm"
+    ],
+    "dependencies": {},
+    "peerDependencies": {
+      "react": ">=18"
+    }
+  },
+  {
+    "name": "useSmartForm",
+    "type": "hook",
+    "files": [
+      "components/form/SmartForm/hooks/useSmartForm.ts"
+    ],
+    "registryDependencies": [
+      "SmartField",
+      "SmartForm",
+      "useForm"
+    ],
+    "dependencies": {},
+    "peerDependencies": {
+      "react": ">=18"
+    }
+  },
+  {
+    "name": "useToast",
+    "type": "hook",
+    "files": [
+      "hooks/useToast.ts"
+    ],
+    "registryDependencies": [
+      "ToastContext"
+    ],
+    "dependencies": {},
+    "peerDependencies": {
+      "react": ">=18"
+    }
+  }
+]
